@@ -6,4 +6,9 @@ public partial class FrmProducts : Form
     {
         InitializeComponent();
     }
+
+    private void btnOut_Click(object sender, EventArgs e)
+    {
+        this.Close();
+    }
 }

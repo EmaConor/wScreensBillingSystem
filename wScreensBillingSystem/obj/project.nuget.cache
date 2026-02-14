@@ -1,27 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "LC8gXhU4Ydo=",
+  "dgSpecHash": "p12QBEJkGlU=",
   "success": true,
   "projectFilePath": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\wScreensBillingSystem.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Usuario\\.nuget\\packages\\materialskin.updated\\0.2.2\\materialskin.updated.0.2.2.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.12\\microsoft.netcore.app.ref.9.0.12.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.12\\microsoft.windowsdesktop.app.ref.9.0.12.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.12\\microsoft.aspnetcore.app.ref.9.0.12.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.12\\microsoft.netcore.app.host.win-x64.9.0.12.nupkg.sha512"
+    "C:\\Users\\Usuario\\.nuget\\packages\\materialskin.2\\2.3.1\\materialskin.2.2.3.1.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.web.webview2\\1.0.3719.77\\microsoft.web.webview2.1.0.3719.77.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.13\\microsoft.netcore.app.ref.9.0.13.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.13\\microsoft.windowsdesktop.app.ref.9.0.13.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.13\\microsoft.aspnetcore.app.ref.9.0.13.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.13\\microsoft.netcore.app.host.win-x64.9.0.13.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "message": "Package 'MaterialSkin.Updated 0.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0-windows7.0'. This package may not be fully compatible with your project.",
-      "projectPath": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\wScreensBillingSystem.csproj",
-      "warningLevel": 1,
-      "filePath": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\wScreensBillingSystem.csproj",
-      "libraryId": "MaterialSkin.Updated",
-      "targetGraphs": [
-        "net9.0-windows7.0"
-      ]
-    }
-  ]
+  "logs": []
 }

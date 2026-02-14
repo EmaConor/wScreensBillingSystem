@@ -14,26 +14,27 @@ public partial class FrmLogin : Form
 
     private void btnVerify_Click(object sender, EventArgs e)
     {
-        string res = "";
-        if (txtUser.Text != "" && txtPassword.Text != string.Empty)
-        {
-            if (txtUser.Text == "admin" && txtPassword.Text == "123456")
-                res = "Admin";
+        string user = txtUser.Text.Trim();
+        string pass = txtPassword.Text.Trim();
 
-            if (res != "")
-            {
-                MessageBox.Show("Login correcto: " + res);
-                FrmMain frm = new FrmMain();
-                this.Hide();
-                frm.Show();
-            }
-            else
-            {
-                MessageBox.Show("Usuario y clave no encontrado");
-                txtUser.Focus();
-            }
+        if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
+        {
+            MessageBox.Show("Ingrese el nombre de usuario y clave");
+            return;
         }
-        
+
+        if (user.Equals("admin") && pass.Equals("admin"))
+        {
+            this.DialogResult = DialogResult.OK;
+            FrmMain frm = new FrmMain();
+            this.Hide();
+            frm.Show();
+        }
+        else
+        {
+            MessageBox.Show("Usuario y clave no encontrado");
+            txtUser.Focus();
+        }
     }
 
 }

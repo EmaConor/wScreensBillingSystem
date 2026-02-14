@@ -32,289 +32,338 @@ partial class FrmCustomers
     private void InitializeComponent()
     {
         lblTitle = new MaterialSkin.Controls.MaterialLabel();
-        pnlCustomer = new System.Windows.Forms.Panel();
-        txtEmail = new MaterialSkin.Controls.MaterialSingleLineTextField();
-        txtPhone = new MaterialSkin.Controls.MaterialSingleLineTextField();
-        txtAddress = new MaterialSkin.Controls.MaterialSingleLineTextField();
-        txtDoc = new MaterialSkin.Controls.MaterialSingleLineTextField();
-        txtName = new MaterialSkin.Controls.MaterialSingleLineTextField();
-        panel1 = new System.Windows.Forms.Panel();
-        dataGridView1 = new System.Windows.Forms.DataGridView();
-        btnSearch = new MaterialSkin.Controls.MaterialRaisedButton();
-        txtSearch = new MaterialSkin.Controls.MaterialSingleLineTextField();
-        btnNew = new MaterialSkin.Controls.MaterialRaisedButton();
-        btnUpdate = new MaterialSkin.Controls.MaterialRaisedButton();
-        btnDelete = new MaterialSkin.Controls.MaterialRaisedButton();
-        btnOut = new MaterialSkin.Controls.MaterialRaisedButton();
+        pnlCustomer = new Panel();
+        txtId = new TextBox();
+        txtEmail = new MaterialSkin.Controls.MaterialTextBox();
+        txtPhone = new MaterialSkin.Controls.MaterialTextBox();
+        txtAddress = new MaterialSkin.Controls.MaterialTextBox();
+        txtDoc = new MaterialSkin.Controls.MaterialTextBox();
+        txtName = new MaterialSkin.Controls.MaterialTextBox();
+        pnlSearch = new Panel();
+        dataGridView1 = new DataGridView();
+        btnSearch = new MaterialSkin.Controls.MaterialButton();
+        txtSearch = new MaterialSkin.Controls.MaterialTextBox();
+        btnNew = new MaterialSkin.Controls.MaterialButton();
+        btnUpdate = new MaterialSkin.Controls.MaterialButton();
+        btnDelete = new MaterialSkin.Controls.MaterialButton();
+        btnOut = new MaterialSkin.Controls.MaterialButton();
         pnlCustomer.SuspendLayout();
-        panel1.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+        pnlSearch.SuspendLayout();
+        ((ISupportInitialize)dataGridView1).BeginInit();
         SuspendLayout();
         // 
         // lblTitle
         // 
         lblTitle.Depth = 0;
-        lblTitle.Font = new System.Drawing.Font("Roboto", 11F);
-        lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)222)), ((int)((byte)0)), ((int)((byte)0)), ((int)((byte)0)));
-        lblTitle.Location = new System.Drawing.Point(1, 21);
+        lblTitle.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+        lblTitle.ForeColor = Color.FromArgb(222, 0, 0, 0);
+        lblTitle.Location = new Point(53, 9);
         lblTitle.MouseState = MaterialSkin.MouseState.HOVER;
         lblTitle.Name = "lblTitle";
-        lblTitle.Size = new System.Drawing.Size(921, 35);
+        lblTitle.Size = new Size(700, 23);
         lblTitle.TabIndex = 0;
         lblTitle.Text = "Admintración de Clientes";
-        lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+        lblTitle.TextAlign = ContentAlignment.TopCenter;
         // 
         // pnlCustomer
         // 
+        pnlCustomer.Controls.Add(txtId);
         pnlCustomer.Controls.Add(txtEmail);
         pnlCustomer.Controls.Add(txtPhone);
         pnlCustomer.Controls.Add(txtAddress);
         pnlCustomer.Controls.Add(txtDoc);
         pnlCustomer.Controls.Add(txtName);
-        pnlCustomer.Location = new System.Drawing.Point(193, 50);
+        pnlCustomer.Location = new Point(129, 35);
         pnlCustomer.Name = "pnlCustomer";
-        pnlCustomer.Size = new System.Drawing.Size(423, 195);
+        pnlCustomer.Size = new Size(425, 213);
         pnlCustomer.TabIndex = 1;
+        // 
+        // txtId
+        // 
+        txtId.Enabled = false;
+        txtId.Location = new Point(7, 22);
+        txtId.Name = "txtId";
+        txtId.Size = new Size(22, 23);
+        txtId.TabIndex = 5;
+        txtId.Visible = false;
         // 
         // txtEmail
         // 
+        txtEmail.AnimateReadOnly = false;
+        txtEmail.BorderStyle = BorderStyle.None;
         txtEmail.Depth = 0;
+        txtEmail.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
         txtEmail.Hint = "Email";
-        txtEmail.Location = new System.Drawing.Point(35, 150);
+        txtEmail.LeadingIcon = null;
+        txtEmail.Location = new Point(35, 173);
         txtEmail.MaxLength = 32767;
-        txtEmail.MouseState = MaterialSkin.MouseState.HOVER;
+        txtEmail.MouseState = MaterialSkin.MouseState.OUT;
+        txtEmail.Multiline = false;
         txtEmail.Name = "txtEmail";
-        txtEmail.PasswordChar = '\0';
-        txtEmail.SelectedText = "";
-        txtEmail.SelectionLength = 0;
-        txtEmail.SelectionStart = 0;
-        txtEmail.Size = new System.Drawing.Size(357, 23);
+        txtEmail.Size = new Size(357, 36);
         txtEmail.TabIndex = 4;
-        txtEmail.TabStop = false;
-        txtEmail.UseSystemPasswordChar = false;
+        txtEmail.Text = "";
+        txtEmail.TrailingIcon = null;
+        txtEmail.UseTallSize = false;
         // 
         // txtPhone
         // 
+        txtPhone.AnimateReadOnly = false;
+        txtPhone.BorderStyle = BorderStyle.None;
         txtPhone.Depth = 0;
+        txtPhone.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
         txtPhone.Hint = "Teléfono";
-        txtPhone.Location = new System.Drawing.Point(35, 121);
+        txtPhone.LeadingIcon = null;
+        txtPhone.Location = new Point(35, 131);
         txtPhone.MaxLength = 32767;
-        txtPhone.MouseState = MaterialSkin.MouseState.HOVER;
+        txtPhone.MouseState = MaterialSkin.MouseState.OUT;
+        txtPhone.Multiline = false;
         txtPhone.Name = "txtPhone";
-        txtPhone.PasswordChar = '\0';
-        txtPhone.SelectedText = "";
-        txtPhone.SelectionLength = 0;
-        txtPhone.SelectionStart = 0;
-        txtPhone.Size = new System.Drawing.Size(357, 23);
+        txtPhone.Size = new Size(357, 36);
         txtPhone.TabIndex = 3;
-        txtPhone.TabStop = false;
-        txtPhone.UseSystemPasswordChar = false;
+        txtPhone.Text = "";
+        txtPhone.TrailingIcon = null;
+        txtPhone.UseTallSize = false;
         // 
         // txtAddress
         // 
+        txtAddress.AnimateReadOnly = false;
+        txtAddress.BorderStyle = BorderStyle.None;
         txtAddress.Depth = 0;
+        txtAddress.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
         txtAddress.Hint = "Dirección";
-        txtAddress.Location = new System.Drawing.Point(35, 92);
+        txtAddress.LeadingIcon = null;
+        txtAddress.Location = new Point(35, 89);
         txtAddress.MaxLength = 32767;
-        txtAddress.MouseState = MaterialSkin.MouseState.HOVER;
+        txtAddress.MouseState = MaterialSkin.MouseState.OUT;
+        txtAddress.Multiline = false;
         txtAddress.Name = "txtAddress";
-        txtAddress.PasswordChar = '\0';
-        txtAddress.SelectedText = "";
-        txtAddress.SelectionLength = 0;
-        txtAddress.SelectionStart = 0;
-        txtAddress.Size = new System.Drawing.Size(357, 23);
+        txtAddress.Size = new Size(357, 36);
         txtAddress.TabIndex = 2;
-        txtAddress.TabStop = false;
-        txtAddress.UseSystemPasswordChar = false;
+        txtAddress.Text = "";
+        txtAddress.TrailingIcon = null;
+        txtAddress.UseTallSize = false;
         // 
         // txtDoc
         // 
+        txtDoc.AnimateReadOnly = false;
+        txtDoc.BorderStyle = BorderStyle.None;
         txtDoc.Depth = 0;
+        txtDoc.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
         txtDoc.Hint = "Documento";
-        txtDoc.Location = new System.Drawing.Point(35, 54);
+        txtDoc.LeadingIcon = null;
+        txtDoc.Location = new Point(35, 47);
         txtDoc.MaxLength = 32767;
-        txtDoc.MouseState = MaterialSkin.MouseState.HOVER;
+        txtDoc.MouseState = MaterialSkin.MouseState.OUT;
+        txtDoc.Multiline = false;
         txtDoc.Name = "txtDoc";
-        txtDoc.PasswordChar = '\0';
-        txtDoc.SelectedText = "";
-        txtDoc.SelectionLength = 0;
-        txtDoc.SelectionStart = 0;
-        txtDoc.Size = new System.Drawing.Size(357, 23);
+        txtDoc.Size = new Size(357, 36);
         txtDoc.TabIndex = 1;
-        txtDoc.TabStop = false;
-        txtDoc.UseSystemPasswordChar = false;
+        txtDoc.Text = "";
+        txtDoc.TrailingIcon = null;
+        txtDoc.UseTallSize = false;
         // 
         // txtName
         // 
+        txtName.AnimateReadOnly = false;
+        txtName.BorderStyle = BorderStyle.None;
         txtName.Depth = 0;
+        txtName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
         txtName.Hint = "Nombre Cliente";
-        txtName.Location = new System.Drawing.Point(35, 25);
+        txtName.LeadingIcon = null;
+        txtName.Location = new Point(35, 9);
         txtName.MaxLength = 32767;
-        txtName.MouseState = MaterialSkin.MouseState.HOVER;
+        txtName.MouseState = MaterialSkin.MouseState.OUT;
+        txtName.Multiline = false;
         txtName.Name = "txtName";
-        txtName.PasswordChar = '\0';
-        txtName.SelectedText = "";
-        txtName.SelectionLength = 0;
-        txtName.SelectionStart = 0;
-        txtName.Size = new System.Drawing.Size(357, 23);
+        txtName.Size = new Size(357, 36);
         txtName.TabIndex = 0;
-        txtName.TabStop = false;
-        txtName.UseSystemPasswordChar = false;
+        txtName.Text = "";
+        txtName.TrailingIcon = null;
+        txtName.UseTallSize = false;
         // 
-        // panel1
+        // pnlSearch
         // 
-        panel1.Controls.Add(dataGridView1);
-        panel1.Controls.Add(btnSearch);
-        panel1.Controls.Add(txtSearch);
-        panel1.Location = new System.Drawing.Point(21, 269);
-        panel1.Name = "panel1";
-        panel1.Size = new System.Drawing.Size(752, 246);
-        panel1.TabIndex = 2;
+        pnlSearch.Controls.Add(dataGridView1);
+        pnlSearch.Controls.Add(btnSearch);
+        pnlSearch.Controls.Add(txtSearch);
+        pnlSearch.Location = new Point(-8, 254);
+        pnlSearch.Name = "pnlSearch";
+        pnlSearch.Size = new Size(735, 263);
+        pnlSearch.TabIndex = 2;
         // 
         // dataGridView1
         // 
-        dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        dataGridView1.Location = new System.Drawing.Point(35, 67);
+        dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        dataGridView1.Location = new Point(13, 67);
         dataGridView1.Name = "dataGridView1";
-        dataGridView1.Size = new System.Drawing.Size(684, 162);
+        dataGridView1.Size = new Size(706, 184);
         dataGridView1.TabIndex = 5;
         dataGridView1.Text = "dataGridView1";
         // 
         // btnSearch
         // 
-        btnSearch.AutoSize = true;
-        btnSearch.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+        btnSearch.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        btnSearch.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
         btnSearch.Depth = 0;
+        btnSearch.HighEmphasis = true;
         btnSearch.Icon = null;
-        btnSearch.Location = new System.Drawing.Point(645, 14);
+        btnSearch.Location = new Point(635, 22);
+        btnSearch.Margin = new Padding(4, 6, 4, 6);
         btnSearch.MouseState = MaterialSkin.MouseState.HOVER;
         btnSearch.Name = "btnSearch";
-        btnSearch.Primary = true;
-        btnSearch.Size = new System.Drawing.Size(74, 36);
-        btnSearch.TabIndex = 4;
+        btnSearch.NoAccentTextColor = Color.Empty;
+        btnSearch.Size = new Size(77, 36);
+        btnSearch.TabIndex = 9;
         btnSearch.Text = "Buscar";
+        btnSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+        btnSearch.UseAccentColor = false;
         btnSearch.UseVisualStyleBackColor = true;
         // 
         // txtSearch
         // 
+        txtSearch.AnimateReadOnly = false;
+        txtSearch.BorderStyle = BorderStyle.None;
         txtSearch.Depth = 0;
+        txtSearch.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
         txtSearch.Hint = "Buscar Cliente";
-        txtSearch.Location = new System.Drawing.Point(35, 27);
+        txtSearch.LeadingIcon = null;
+        txtSearch.Location = new Point(24, 14);
         txtSearch.MaxLength = 32767;
-        txtSearch.MouseState = MaterialSkin.MouseState.HOVER;
+        txtSearch.MouseState = MaterialSkin.MouseState.OUT;
+        txtSearch.Multiline = false;
         txtSearch.Name = "txtSearch";
-        txtSearch.PasswordChar = '\0';
-        txtSearch.SelectedText = "";
-        txtSearch.SelectionLength = 0;
-        txtSearch.SelectionStart = 0;
-        txtSearch.Size = new System.Drawing.Size(604, 23);
-        txtSearch.TabIndex = 1;
-        txtSearch.TabStop = false;
-        txtSearch.UseSystemPasswordChar = false;
+        txtSearch.Size = new Size(604, 50);
+        txtSearch.TabIndex = 8;
+        txtSearch.Text = "";
+        txtSearch.TrailingIcon = null;
         // 
         // btnNew
         // 
-        btnNew.AutoSize = true;
-        btnNew.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+        btnNew.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        btnNew.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
         btnNew.Depth = 0;
+        btnNew.HighEmphasis = true;
         btnNew.Icon = null;
-        btnNew.Location = new System.Drawing.Point(635, 89);
+        btnNew.Location = new Point(573, 74);
+        btnNew.Margin = new Padding(4, 6, 4, 6);
         btnNew.MouseState = MaterialSkin.MouseState.HOVER;
         btnNew.Name = "btnNew";
-        btnNew.Primary = true;
-        btnNew.Size = new System.Drawing.Size(66, 36);
-        btnNew.TabIndex = 3;
+        btnNew.NoAccentTextColor = Color.Empty;
+        btnNew.Size = new Size(70, 36);
+        btnNew.TabIndex = 5;
         btnNew.Text = "Nuevo";
+        btnNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+        btnNew.UseAccentColor = false;
         btnNew.UseVisualStyleBackColor = true;
         // 
         // btnUpdate
         // 
-        btnUpdate.AutoSize = true;
-        btnUpdate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+        btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
         btnUpdate.Depth = 0;
+        btnUpdate.HighEmphasis = true;
         btnUpdate.Icon = null;
-        btnUpdate.Location = new System.Drawing.Point(635, 131);
+        btnUpdate.Location = new Point(573, 116);
+        btnUpdate.Margin = new Padding(4, 6, 4, 6);
         btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
         btnUpdate.Name = "btnUpdate";
-        btnUpdate.Primary = true;
-        btnUpdate.Size = new System.Drawing.Size(103, 36);
-        btnUpdate.TabIndex = 4;
+        btnUpdate.NoAccentTextColor = Color.Empty;
+        btnUpdate.Size = new Size(109, 36);
+        btnUpdate.TabIndex = 6;
         btnUpdate.Text = "Actualizar";
+        btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+        btnUpdate.UseAccentColor = false;
         btnUpdate.UseVisualStyleBackColor = true;
         // 
         // btnDelete
         // 
-        btnDelete.AutoSize = true;
-        btnDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+        btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
         btnDelete.Depth = 0;
+        btnDelete.HighEmphasis = true;
         btnDelete.Icon = null;
-        btnDelete.Location = new System.Drawing.Point(635, 173);
+        btnDelete.Location = new Point(573, 158);
+        btnDelete.Margin = new Padding(4, 6, 4, 6);
         btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
         btnDelete.Name = "btnDelete";
-        btnDelete.Primary = true;
-        btnDelete.Size = new System.Drawing.Size(83, 36);
-        btnDelete.TabIndex = 5;
+        btnDelete.NoAccentTextColor = Color.Empty;
+        btnDelete.Size = new Size(88, 36);
+        btnDelete.TabIndex = 7;
         btnDelete.Text = "Eliminar";
+        btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+        btnDelete.UseAccentColor = false;
         btnDelete.UseVisualStyleBackColor = true;
         // 
         // btnOut
         // 
-        btnOut.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+        btnOut.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        btnOut.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
         btnOut.Depth = 0;
+        btnOut.HighEmphasis = true;
         btnOut.Icon = null;
-        btnOut.Location = new System.Drawing.Point(795, 462);
+        btnOut.Location = new Point(734, 466);
+        btnOut.Margin = new Padding(4, 6, 4, 6);
         btnOut.MouseState = MaterialSkin.MouseState.HOVER;
         btnOut.Name = "btnOut";
-        btnOut.Primary = true;
-        btnOut.Size = new System.Drawing.Size(90, 36);
-        btnOut.TabIndex = 6;
+        btnOut.NoAccentTextColor = Color.Empty;
+        btnOut.Size = new Size(64, 36);
+        btnOut.TabIndex = 10;
         btnOut.Text = "Salir";
+        btnOut.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+        btnOut.UseAccentColor = false;
         btnOut.UseVisualStyleBackColor = true;
+        btnOut.Click += btnOut_Click;
         // 
         // FrmCustomers
         // 
-        AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        ClientSize = new System.Drawing.Size(923, 547);
+        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(811, 517);
+        ControlBox = false;
         Controls.Add(btnOut);
         Controls.Add(btnDelete);
         Controls.Add(btnUpdate);
         Controls.Add(btnNew);
-        Controls.Add(panel1);
-        Controls.Add(pnlCustomer);
+        Controls.Add(pnlSearch);
         Controls.Add(lblTitle);
-        Text = "FrmCustomers";
+        Controls.Add(pnlCustomer);
+        Name = "FrmCustomers";
+        ShowInTaskbar = false;
         pnlCustomer.ResumeLayout(false);
-        panel1.ResumeLayout(false);
-        panel1.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+        pnlCustomer.PerformLayout();
+        pnlSearch.ResumeLayout(false);
+        pnlSearch.PerformLayout();
+        ((ISupportInitialize)dataGridView1).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
 
-    private MaterialSkin.Controls.MaterialRaisedButton btnOut;
+    private MaterialSkin.Controls.MaterialButton btnOut;
 
     private System.Windows.Forms.DataGridView dataGridView1;
 
-    private MaterialSkin.Controls.MaterialRaisedButton btnSearch;
+    private MaterialSkin.Controls.MaterialButton btnSearch;
 
-    private MaterialSkin.Controls.MaterialRaisedButton btnDelete;
+    private MaterialSkin.Controls.MaterialButton btnDelete;
 
-    private MaterialSkin.Controls.MaterialRaisedButton btnNew;
-    private MaterialSkin.Controls.MaterialRaisedButton btnUpdate;
+    private MaterialSkin.Controls.MaterialButton btnNew;
+    private MaterialSkin.Controls.MaterialButton btnUpdate;
 
-    private System.Windows.Forms.Panel panel1;
-    private MaterialSkin.Controls.MaterialSingleLineTextField txtSearch;
+    private System.Windows.Forms.Panel pnlSearch;
+    private MaterialSkin.Controls.MaterialTextBox txtSearch;
 
-    private MaterialSkin.Controls.MaterialSingleLineTextField txtName;
-    private MaterialSkin.Controls.MaterialSingleLineTextField txtDoc;
-    private MaterialSkin.Controls.MaterialSingleLineTextField txtAddress;
-    private MaterialSkin.Controls.MaterialSingleLineTextField txtPhone;
-    private MaterialSkin.Controls.MaterialSingleLineTextField txtEmail;
+    private MaterialSkin.Controls.MaterialTextBox txtName;
+    private MaterialSkin.Controls.MaterialTextBox txtDoc;
+    private MaterialSkin.Controls.MaterialTextBox txtAddress;
+    private MaterialSkin.Controls.MaterialTextBox txtPhone;
+    private MaterialSkin.Controls.MaterialTextBox txtEmail;
 
     private System.Windows.Forms.Panel pnlCustomer;
 
     private MaterialSkin.Controls.MaterialLabel lblTitle;
 
     #endregion
+
+    private TextBox txtId;
 }

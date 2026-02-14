@@ -8,17 +8,64 @@
     ".NETCoreApp,Version=v9.0": {
       "wScreensBillingSystem/1.0.0": {
         "dependencies": {
-          "MaterialSkin.Updated": "0.2.2"
+          "MaterialSkin.2": "2.3.1",
+          "Microsoft.Web.WebView2": "1.0.3719.77",
+          "Microsoft.Web.WebView2.Core": "1.0.3719.77",
+          "Microsoft.Web.WebView2.WinForms": "1.0.3719.77",
+          "Microsoft.Web.WebView2.Wpf": "1.0.3719.77"
         },
         "runtime": {
           "wScreensBillingSystem.dll": {}
         }
       },
-      "MaterialSkin.Updated/0.2.2": {
+      "MaterialSkin.2/2.3.1": {
         "runtime": {
-          "lib/MaterialSkin.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+          "lib/net5.0-windows7.0/MaterialSkin.dll": {
+            "assemblyVersion": "2.3.1.0",
+            "fileVersion": "2.3.1.0"
+          }
+        }
+      },
+      "Microsoft.Web.WebView2/1.0.3719.77": {
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/WebView2Loader.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.0.3719.77"
+          },
+          "runtimes/win-x64/native/WebView2Loader.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.0.3719.77"
+          },
+          "runtimes/win-x86/native/WebView2Loader.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.0.3719.77"
+          }
+        }
+      },
+      "Microsoft.Web.WebView2.Core/1.0.3719.77": {
+        "runtime": {
+          "Microsoft.Web.WebView2.Core.dll": {
+            "assemblyVersion": "1.0.3719.77",
+            "fileVersion": "1.0.3719.77"
+          }
+        }
+      },
+      "Microsoft.Web.WebView2.WinForms/1.0.3719.77": {
+        "runtime": {
+          "Microsoft.Web.WebView2.WinForms.dll": {
+            "assemblyVersion": "1.0.3719.77",
+            "fileVersion": "1.0.3719.77"
+          }
+        }
+      },
+      "Microsoft.Web.WebView2.Wpf/1.0.3719.77": {
+        "runtime": {
+          "Microsoft.Web.WebView2.Wpf.dll": {
+            "assemblyVersion": "1.0.3719.77",
+            "fileVersion": "1.0.3719.77"
           }
         }
       }
@@ -30,12 +77,34 @@
       "serviceable": false,
       "sha512": ""
     },
-    "MaterialSkin.Updated/0.2.2": {
+    "MaterialSkin.2/2.3.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-X4FGDVbHUb0h/gBTje6nPk3tYokwPqDA4+2PsMm28z736j/B2CNsLNeDOIzqqvdmCm6hfD5amFRQPf4HU9BmGQ==",
-      "path": "materialskin.updated/0.2.2",
-      "hashPath": "materialskin.updated.0.2.2.nupkg.sha512"
+      "sha512": "sha512-w2vFxLNk4InCDU7pXDfBqPfv55HhBtuu8HRfEqQpeS3sNTS1pUzDs/hS0b5JW2/tKvt+P1of9OINP8a9omWDBg==",
+      "path": "materialskin.2/2.3.1",
+      "hashPath": "materialskin.2.2.3.1.nupkg.sha512"
+    },
+    "Microsoft.Web.WebView2/1.0.3719.77": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-t+ucyKw5NTwMjsUrDF6R9Lk40lpcKQD1/HgyGFxl49tdA4h9dKlsj6FYGEmDRpFNfnTpENuTypMcdbrlkqBdDA==",
+      "path": "microsoft.web.webview2/1.0.3719.77",
+      "hashPath": "microsoft.web.webview2.1.0.3719.77.nupkg.sha512"
+    },
+    "Microsoft.Web.WebView2.Core/1.0.3719.77": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Web.WebView2.WinForms/1.0.3719.77": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Web.WebView2.Wpf/1.0.3719.77": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

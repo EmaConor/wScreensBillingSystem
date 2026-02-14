@@ -9,16 +9,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MaterialSkin.Updated" Version="0.2.2" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Update="FrmMain.cs">
         <SubType>Form</SubType>
       </Compile>
       <Compile Update="FrmCustomers.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="FrmProducts.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="FrmInvoiceModal.cs">
+        <SubType>Form</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
+      <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3719.77" />
     </ItemGroup>
 
 </Project>
