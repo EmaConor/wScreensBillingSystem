@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "D:\\Programming\\C#\\wScreensBillingSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|d:\\programming\\c#\\wscreensbillingsystem\\wscreensbillingsystem\\frminvoicemodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|solutionrelative:wscreensbillingsystem\\frminvoicemodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|d:\\programming\\c#\\wscreensbillingsystem\\wscreensbillingsystem\\forms\\frmrols.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|solutionrelative:wscreensbillingsystem\\forms\\frmrols.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|D:\\Programming\\C#\\wScreensBillingSystem\\wscreensbillingsystem\\frminvoices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|solutionrelative:wscreensbillingsystem\\frminvoices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|d:\\programming\\c#\\wscreensbillingsystem\\wscreensbillingsystem\\models\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|solutionrelative:wscreensbillingsystem\\models\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|d:\\programming\\c#\\wscreensbillingsystem\\wscreensbillingsystem\\forms\\frmrols.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|solutionrelative:wscreensbillingsystem\\forms\\frmrols.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|D:\\Programming\\C#\\wScreensBillingSystem\\wscreensbillingsystem\\forms\\frmrols.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|solutionrelative:wscreensbillingsystem\\forms\\frmrols.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|d:\\programming\\c#\\wscreensbillingsystem\\wscreensbillingsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6764D803-6F8D-43FB-83E4-3F9C25C10A35}|wScreensBillingSystem\\wScreensBillingSystem.csproj|solutionrelative:wscreensbillingsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +30,68 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FrmInvoices.cs [Design]",
-              "DocumentMoniker": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\FrmInvoices.cs",
-              "RelativeDocumentMoniker": "wScreensBillingSystem\\FrmInvoices.cs",
-              "ToolTip": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\FrmInvoices.cs [Design]",
-              "RelativeToolTip": "wScreensBillingSystem\\FrmInvoices.cs [Design]",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\Program.cs",
+              "RelativeDocumentMoniker": "wScreensBillingSystem\\Program.cs",
+              "ToolTip": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\Program.cs",
+              "RelativeToolTip": "wScreensBillingSystem\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-14T15:46:39.09Z"
+              "WhenOpened": "2026-02-16T12:37:01.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Rol.cs",
+              "DocumentMoniker": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\Models\\Rol.cs",
+              "RelativeDocumentMoniker": "wScreensBillingSystem\\Models\\Rol.cs",
+              "ToolTip": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\Models\\Rol.cs",
+              "RelativeToolTip": "wScreensBillingSystem\\Models\\Rol.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAywEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T23:53:21.361Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmRols.cs [Design]",
+              "DocumentMoniker": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\Forms\\FrmRols.cs",
+              "RelativeDocumentMoniker": "wScreensBillingSystem\\Forms\\FrmRols.cs",
+              "ToolTip": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\Forms\\FrmRols.cs [Design]",
+              "RelativeToolTip": "wScreensBillingSystem\\Forms\\FrmRols.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T23:11:42.895Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmRols.Designer.cs",
+              "DocumentMoniker": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\Forms\\FrmRols.Designer.cs",
+              "RelativeDocumentMoniker": "wScreensBillingSystem\\Forms\\FrmRols.Designer.cs",
+              "ToolTip": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\Forms\\FrmRols.Designer.cs",
+              "RelativeToolTip": "wScreensBillingSystem\\Forms\\FrmRols.Designer.cs",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAQwMYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T22:40:15.129Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FrmInvoiceModal.cs [Design]",
-              "DocumentMoniker": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\FrmInvoiceModal.cs",
-              "RelativeDocumentMoniker": "wScreensBillingSystem\\FrmInvoiceModal.cs",
-              "ToolTip": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\FrmInvoiceModal.cs [Design]",
-              "RelativeToolTip": "wScreensBillingSystem\\FrmInvoiceModal.cs [Design]",
+              "Title": "FrmRols.cs",
+              "DocumentMoniker": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\Forms\\FrmRols.cs",
+              "RelativeDocumentMoniker": "wScreensBillingSystem\\Forms\\FrmRols.cs",
+              "ToolTip": "D:\\Programming\\C#\\wScreensBillingSystem\\wScreensBillingSystem\\Forms\\FrmRols.cs",
+              "RelativeToolTip": "wScreensBillingSystem\\Forms\\FrmRols.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwCMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-14T15:46:26.169Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-02-15T22:39:43.96Z",
+              "EditorCaption": ""
             }
           ]
         }

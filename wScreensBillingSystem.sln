@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11505.172 d18.3
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wScreensBillingSystem", "wScreensBillingSystem\wScreensBillingSystem.csproj", "{6764D803-6F8D-43FB-83E4-3F9C25C10A35}"
 EndProject
 Global
@@ -12,5 +15,11 @@ Global
 		{6764D803-6F8D-43FB-83E4-3F9C25C10A35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6764D803-6F8D-43FB-83E4-3F9C25C10A35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6764D803-6F8D-43FB-83E4-3F9C25C10A35}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC750BF3-209F-4C9F-AE73-D84341CE0908}
 	EndGlobalSection
 EndGlobal

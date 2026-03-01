@@ -36,7 +36,10 @@ namespace wScreensBillingSystem
             txtId = new TextBox();
             txtName = new MaterialSkin.Controls.MaterialTextBox();
             pnlSearch = new Panel();
-            dataGridView1 = new DataGridView();
+            dgvRols = new DataGridView();
+            colID = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
+            colDescription = new DataGridViewTextBoxColumn();
             btnSearch = new MaterialSkin.Controls.MaterialButton();
             txtSearch = new MaterialSkin.Controls.MaterialTextBox();
             btnNew = new MaterialSkin.Controls.MaterialButton();
@@ -45,7 +48,7 @@ namespace wScreensBillingSystem
             btnOut = new MaterialSkin.Controls.MaterialButton();
             pnlCustomer.SuspendLayout();
             pnlSearch.SuspendLayout();
-            ((ISupportInitialize)dataGridView1).BeginInit();
+            ((ISupportInitialize)dgvRols).BeginInit();
             SuspendLayout();
             // 
             // lblTitle
@@ -104,7 +107,6 @@ namespace wScreensBillingSystem
             txtId.ReadOnly = true;
             txtId.Size = new Size(22, 23);
             txtId.TabIndex = 5;
-            txtId.Visible = false;
             // 
             // txtName
             // 
@@ -127,7 +129,7 @@ namespace wScreensBillingSystem
             // 
             // pnlSearch
             // 
-            pnlSearch.Controls.Add(dataGridView1);
+            pnlSearch.Controls.Add(dgvRols);
             pnlSearch.Controls.Add(btnSearch);
             pnlSearch.Controls.Add(txtSearch);
             pnlSearch.Location = new Point(-8, 224);
@@ -135,14 +137,46 @@ namespace wScreensBillingSystem
             pnlSearch.Size = new Size(735, 293);
             pnlSearch.TabIndex = 2;
             // 
-            // dataGridView1
+            // dgvRols
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(13, 67);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(706, 214);
-            dataGridView1.TabIndex = 5;
-            dataGridView1.Text = "dataGridView1";
+            dgvRols.AllowUserToAddRows = false;
+            dgvRols.AllowUserToDeleteRows = false;
+            dgvRols.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvRols.Columns.AddRange(new DataGridViewColumn[] { colID, colName, colDescription });
+            dgvRols.Location = new Point(13, 67);
+            dgvRols.Name = "dgvRols";
+            dgvRols.ReadOnly = true;
+            dgvRols.Size = new Size(706, 214);
+            dgvRols.TabIndex = 5;
+            dgvRols.Text = "dataGridView1";
+            dgvRols.CellClick += dgvRols_CellClick;
+            dgvRols.MouseDown += dgvRols_MouseDown;
+            // 
+            // colID
+            // 
+            colID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colID.HeaderText = "ID";
+            colID.Name = "colID";
+            colID.ReadOnly = true;
+            colID.Resizable = DataGridViewTriState.False;
+            colID.Width = 43;
+            // 
+            // colName
+            // 
+            colName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colName.HeaderText = "Nombre";
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            colName.Resizable = DataGridViewTriState.False;
+            colName.Width = 76;
+            // 
+            // colDescription
+            // 
+            colDescription.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colDescription.HeaderText = "Descripción";
+            colDescription.Name = "colDescription";
+            colDescription.ReadOnly = true;
+            colDescription.Resizable = DataGridViewTriState.False;
             // 
             // btnSearch
             // 
@@ -162,6 +196,7 @@ namespace wScreensBillingSystem
             btnSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnSearch.UseAccentColor = false;
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtSearch
             // 
@@ -188,7 +223,7 @@ namespace wScreensBillingSystem
             btnNew.Depth = 0;
             btnNew.HighEmphasis = true;
             btnNew.Icon = null;
-            btnNew.Location = new Point(573, 74);
+            btnNew.Location = new Point(573, 116);
             btnNew.Margin = new Padding(4, 6, 4, 6);
             btnNew.MouseState = MaterialSkin.MouseState.HOVER;
             btnNew.Name = "btnNew";
@@ -199,15 +234,17 @@ namespace wScreensBillingSystem
             btnNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnNew.UseAccentColor = false;
             btnNew.UseVisualStyleBackColor = true;
+            btnNew.Click += btnNew_Click;
             // 
             // btnUpdate
             // 
             btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnUpdate.Depth = 0;
+            btnUpdate.DrawShadows = false;
             btnUpdate.HighEmphasis = true;
             btnUpdate.Icon = null;
-            btnUpdate.Location = new Point(573, 116);
+            btnUpdate.Location = new Point(573, 97);
             btnUpdate.Margin = new Padding(4, 6, 4, 6);
             btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdate.Name = "btnUpdate";
@@ -218,15 +255,18 @@ namespace wScreensBillingSystem
             btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnUpdate.UseAccentColor = false;
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Visible = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
             btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnDelete.Depth = 0;
+            btnDelete.DrawShadows = false;
             btnDelete.HighEmphasis = true;
             btnDelete.Icon = null;
-            btnDelete.Location = new Point(573, 158);
+            btnDelete.Location = new Point(573, 136);
             btnDelete.Margin = new Padding(4, 6, 4, 6);
             btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
             btnDelete.Name = "btnDelete";
@@ -237,6 +277,8 @@ namespace wScreensBillingSystem
             btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnDelete.UseAccentColor = false;
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Visible = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnOut
             // 
@@ -264,10 +306,10 @@ namespace wScreensBillingSystem
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(811, 517);
             ControlBox = false;
-            Controls.Add(btnOut);
-            Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
             Controls.Add(btnNew);
+            Controls.Add(btnOut);
+            Controls.Add(btnDelete);
             Controls.Add(pnlSearch);
             Controls.Add(lblTitle);
             Controls.Add(pnlCustomer);
@@ -277,14 +319,14 @@ namespace wScreensBillingSystem
             pnlCustomer.PerformLayout();
             pnlSearch.ResumeLayout(false);
             pnlSearch.PerformLayout();
-            ((ISupportInitialize)dataGridView1).EndInit();
+            ((ISupportInitialize)dgvRols).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         private MaterialSkin.Controls.MaterialButton btnOut;
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvRols;
 
         private MaterialSkin.Controls.MaterialButton btnSearch;
 
@@ -306,5 +348,8 @@ namespace wScreensBillingSystem
 
         private TextBox txtId;
         private MaterialSkin.Controls.MaterialMultiLineTextBox2 txtDescription;
+        private DataGridViewTextBoxColumn colID;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn colDescription;
     }
 }
