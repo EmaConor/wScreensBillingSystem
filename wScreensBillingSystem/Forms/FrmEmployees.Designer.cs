@@ -45,16 +45,26 @@ namespace wScreensBillingSystem
             txtDoc = new MaterialSkin.Controls.MaterialTextBox();
             txtName = new MaterialSkin.Controls.MaterialTextBox();
             pnlSearch = new Panel();
-            dataGridView1 = new DataGridView();
+            dgvEmployees = new DataGridView();
+            id = new DataGridViewTextBoxColumn();
+            nameEmployee = new DataGridViewTextBoxColumn();
+            document = new DataGridViewTextBoxColumn();
+            address = new DataGridViewTextBoxColumn();
+            phone = new DataGridViewTextBoxColumn();
+            email = new DataGridViewTextBoxColumn();
+            idRol = new DataGridViewTextBoxColumn();
+            rol = new DataGridViewTextBoxColumn();
+            dateOnboarding = new DataGridViewTextBoxColumn();
+            dateOffboarding = new DataGridViewTextBoxColumn();
+            datos = new DataGridViewTextBoxColumn();
             btnSearch = new MaterialSkin.Controls.MaterialButton();
             txtSearch = new MaterialSkin.Controls.MaterialTextBox();
             btnNew = new MaterialSkin.Controls.MaterialButton();
             btnUpdate = new MaterialSkin.Controls.MaterialButton();
-            btnDelete = new MaterialSkin.Controls.MaterialButton();
             btnOut = new MaterialSkin.Controls.MaterialButton();
             pnlEmployee.SuspendLayout();
             pnlSearch.SuspendLayout();
-            ((ISupportInitialize)dataGridView1).BeginInit();
+            ((ISupportInitialize)dgvEmployees).BeginInit();
             SuspendLayout();
             // 
             // lblTitle
@@ -276,7 +286,7 @@ namespace wScreensBillingSystem
             // 
             // pnlSearch
             // 
-            pnlSearch.Controls.Add(dataGridView1);
+            pnlSearch.Controls.Add(dgvEmployees);
             pnlSearch.Controls.Add(btnSearch);
             pnlSearch.Controls.Add(txtSearch);
             pnlSearch.Location = new Point(-8, 254);
@@ -284,14 +294,87 @@ namespace wScreensBillingSystem
             pnlSearch.Size = new Size(735, 263);
             pnlSearch.TabIndex = 2;
             // 
-            // dataGridView1
+            // dgvEmployees
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(13, 67);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(706, 184);
-            dataGridView1.TabIndex = 5;
-            dataGridView1.Text = "dataGridView1";
+            dgvEmployees.AllowUserToAddRows = false;
+            dgvEmployees.AllowUserToDeleteRows = false;
+            dgvEmployees.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvEmployees.Columns.AddRange(new DataGridViewColumn[] { id, nameEmployee, document, address, phone, email, idRol, rol, dateOnboarding, dateOffboarding, datos });
+            dgvEmployees.Location = new Point(13, 67);
+            dgvEmployees.Name = "dgvEmployees";
+            dgvEmployees.ReadOnly = true;
+            dgvEmployees.Size = new Size(706, 184);
+            dgvEmployees.TabIndex = 5;
+            dgvEmployees.Text = "dataGridView1";
+            dgvEmployees.CellClick += dgvEmployees_CellClick;
+            dgvEmployees.MouseDown += dgvEmployees_MouseDown;
+            // 
+            // id
+            // 
+            id.HeaderText = "ID";
+            id.Name = "id";
+            id.ReadOnly = true;
+            // 
+            // nameEmployee
+            // 
+            nameEmployee.HeaderText = "Nombre";
+            nameEmployee.Name = "nameEmployee";
+            nameEmployee.ReadOnly = true;
+            // 
+            // document
+            // 
+            document.HeaderText = "Documento";
+            document.Name = "document";
+            document.ReadOnly = true;
+            // 
+            // address
+            // 
+            address.HeaderText = "Direccion";
+            address.Name = "address";
+            address.ReadOnly = true;
+            // 
+            // phone
+            // 
+            phone.HeaderText = "Telefono";
+            phone.Name = "phone";
+            phone.ReadOnly = true;
+            // 
+            // email
+            // 
+            email.HeaderText = "Email";
+            email.Name = "email";
+            email.ReadOnly = true;
+            // 
+            // idRol
+            // 
+            idRol.HeaderText = "ID Rol";
+            idRol.Name = "idRol";
+            idRol.ReadOnly = true;
+            idRol.Visible = false;
+            // 
+            // rol
+            // 
+            rol.HeaderText = "Rol";
+            rol.Name = "rol";
+            rol.ReadOnly = true;
+            // 
+            // dateOnboarding
+            // 
+            dateOnboarding.HeaderText = "Ingreso";
+            dateOnboarding.Name = "dateOnboarding";
+            dateOnboarding.ReadOnly = true;
+            // 
+            // dateOffboarding
+            // 
+            dateOffboarding.HeaderText = "Retiro";
+            dateOffboarding.Name = "dateOffboarding";
+            dateOffboarding.ReadOnly = true;
+            // 
+            // datos
+            // 
+            datos.HeaderText = "Datos Adi";
+            datos.Name = "datos";
+            datos.ReadOnly = true;
             // 
             // btnSearch
             // 
@@ -311,6 +394,7 @@ namespace wScreensBillingSystem
             btnSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnSearch.UseAccentColor = false;
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtSearch
             // 
@@ -337,7 +421,7 @@ namespace wScreensBillingSystem
             btnNew.Depth = 0;
             btnNew.HighEmphasis = true;
             btnNew.Icon = null;
-            btnNew.Location = new Point(679, 74);
+            btnNew.Location = new Point(679, 116);
             btnNew.Margin = new Padding(4, 6, 4, 6);
             btnNew.MouseState = MaterialSkin.MouseState.HOVER;
             btnNew.Name = "btnNew";
@@ -348,12 +432,14 @@ namespace wScreensBillingSystem
             btnNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnNew.UseAccentColor = false;
             btnNew.UseVisualStyleBackColor = true;
+            btnNew.Click += btnNew_Click;
             // 
             // btnUpdate
             // 
             btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnUpdate.Depth = 0;
+            btnUpdate.DrawShadows = false;
             btnUpdate.HighEmphasis = true;
             btnUpdate.Icon = null;
             btnUpdate.Location = new Point(679, 116);
@@ -367,25 +453,8 @@ namespace wScreensBillingSystem
             btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnUpdate.UseAccentColor = false;
             btnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnDelete.Depth = 0;
-            btnDelete.HighEmphasis = true;
-            btnDelete.Icon = null;
-            btnDelete.Location = new Point(679, 158);
-            btnDelete.Margin = new Padding(4, 6, 4, 6);
-            btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
-            btnDelete.Name = "btnDelete";
-            btnDelete.NoAccentTextColor = Color.Empty;
-            btnDelete.Size = new Size(88, 36);
-            btnDelete.TabIndex = 7;
-            btnDelete.Text = "Eliminar";
-            btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnDelete.UseAccentColor = false;
-            btnDelete.UseVisualStyleBackColor = true;
+            btnUpdate.Visible = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnOut
             // 
@@ -414,7 +483,6 @@ namespace wScreensBillingSystem
             ClientSize = new Size(811, 517);
             ControlBox = false;
             Controls.Add(btnOut);
-            Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
             Controls.Add(btnNew);
             Controls.Add(pnlSearch);
@@ -426,7 +494,7 @@ namespace wScreensBillingSystem
             pnlEmployee.PerformLayout();
             pnlSearch.ResumeLayout(false);
             pnlSearch.PerformLayout();
-            ((ISupportInitialize)dataGridView1).EndInit();
+            ((ISupportInitialize)dgvEmployees).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -436,8 +504,6 @@ namespace wScreensBillingSystem
         private System.Windows.Forms.DataGridView dataGridView1;
 
         private MaterialSkin.Controls.MaterialButton btnSearch;
-
-        private MaterialSkin.Controls.MaterialButton btnDelete;
 
         private MaterialSkin.Controls.MaterialButton btnNew;
         private MaterialSkin.Controls.MaterialButton btnUpdate;
@@ -462,7 +528,19 @@ namespace wScreensBillingSystem
         private DateTimePicker dtpOnboarding;
         private DateTimePicker dtpOffboarding;
         private Label lblOffboarding;
-        private Label lblOnboarding;
         private MaterialSkin.Controls.MaterialMultiLineTextBox2 txtInfo;
+        private DataGridView dgvEmployees;
+        private Label lblOnboarding;
+        private DataGridViewTextBoxColumn id;
+        private DataGridViewTextBoxColumn nameEmployee;
+        private DataGridViewTextBoxColumn document;
+        private DataGridViewTextBoxColumn address;
+        private DataGridViewTextBoxColumn phone;
+        private DataGridViewTextBoxColumn email;
+        private DataGridViewTextBoxColumn idRol;
+        private DataGridViewTextBoxColumn rol;
+        private DataGridViewTextBoxColumn dateOnboarding;
+        private DataGridViewTextBoxColumn dateOffboarding;
+        private DataGridViewTextBoxColumn datos;
     }
 }

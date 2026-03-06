@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using wScreensBillingSystem.Data;
 
 namespace wScreensBillingSystem
 {
@@ -15,11 +16,257 @@ namespace wScreensBillingSystem
         public FrmEmployees()
         {
             InitializeComponent();
+
+            LoadComboBox();
+            LoadData();
+        }
+
+        BillingDB db = new();
+
+        private void LoadComboBox()
+        {
+            DataTable dt = new();
+            dt = db.LoadTable("TBLROLES", "");
+
+            cmbRol.DataSource = dt;
+            cmbRol.DisplayMember = "StrDescripcion";
+            cmbRol.ValueMember = "IdRolEmpleado";
+            cmbRol.SelectedValue = -1;
+        }
+
+        private void LoadData(string filter = "")
+        {
+            dgvEmployees.Rows.Clear();
+
+
+            DataTable dt = new();
+            string cmd;
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                cmd = $"SELECT e.IdEmpleado, e.StrNombre, e.NumDocumento, e.StrDireccion, e.StrTelefono, e.StrEmail, e.IdRolEmpleado, r.StrDescripcion AS RolDescripcion, e.DtmIngreso, e.DtmRetiro, e.StrDatosAdicionales FROM TBLEMPLEADO e INNER JOIN TBLROLES r ON e.IdRolEmpleado = r.IdRolEmpleado WHERE e.StrNombre LIKE '%{{filter}}%'";
+            }
+            else
+            {
+                cmd = $"SELECT e.IdEmpleado, e.StrNombre, e.NumDocumento, e.StrDireccion, e.StrTelefono, e.StrEmail, e.IdRolEmpleado, r.StrDescripcion AS RolDescripcion, e.DtmIngreso, e.DtmRetiro, e.StrDatosAdicionales FROM TBLEMPLEADO e INNER JOIN TBLROLES r ON e.IdRolEmpleado = r.IdRolEmpleado";
+            }
+
+            dt = db.RunCommandData(cmd);
+            foreach (DataRow row in dt.Rows)
+            {
+                dgvEmployees.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10]);
+            }
+        }
+
+        private void ToggleButtons(bool isEdit)
+        {
+            btnNew.Visible = !isEdit;
+            btnNew.DrawShadows = !isEdit;
+            btnUpdate.Visible = isEdit;
+            btnUpdate.DrawShadows = isEdit;
+        }
+
+        public void Clear()
+        {
+            txtId.Clear();
+            txtName.Clear();
+            txtDoc.Clear();
+            txtAddress.Clear();
+            txtPhone.Clear();
+            txtEmail.Clear();
+            txtSearch.Clear();
+            txtInfo.Clear();
+            cmbRol.SelectedValue = -1;
+            dtpOnboarding.Value = DateTime.Now;
+            dtpOffboarding.Value = DateTime.Now;
+
+            LoadData();
+            ToggleButtons(false);
+            txtName.Focus();
+        }
+
+        private Boolean Validate(string name, string document, string address, string phone, string email, object idRol)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("El nombre es obligatorio", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtName.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(document))
+            {
+                MessageBox.Show("El documento es obligatorio", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDoc.Focus();
+                return false;
+            }
+            if (!isNumeric(document))
+            {
+                MessageBox.Show("El Documento debe ser numerico");
+                txtDoc.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(address))
+            {
+                MessageBox.Show("La dirección es obligatoria", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtAddress.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(phone))
+            {
+                MessageBox.Show("El teléfono es obligatorio", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPhone.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                MessageBox.Show("El email es obligatorio", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+            if (idRol == null || Convert.ToInt32(idRol) <= 0)
+            {
+                MessageBox.Show("Debe seleccionar un rol", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbRol.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private bool isNumeric(string num)
+        {
+            try
+            {
+                double x = Convert.ToDouble(num);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         private void btnOut_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var row = dgvEmployees.Rows[e.RowIndex];
+
+            this.SuspendLayout();
+            txtId.Text = row.Cells["id"].Value?.ToString();
+            txtName.Text = row.Cells["nameEmployee"].Value?.ToString();
+            txtDoc.Text = row.Cells["document"].Value?.ToString();
+            txtAddress.Text = row.Cells["address"].Value?.ToString();
+            txtPhone.Text = row.Cells["phone"].Value?.ToString();
+            txtEmail.Text = row.Cells["email"].Value?.ToString();
+            if (row.Cells["idRol"].Value != null)
+            {
+                int idRol = Convert.ToInt32(row.Cells["idRol"].Value);
+                cmbRol.SelectedValue = idRol;
+            }
+            if (row.Cells["dateOnboarding"].Value != null && row.Cells["dateOnboarding"].Value != DBNull.Value)
+                dtpOnboarding.Value = Convert.ToDateTime(row.Cells["dateOnboarding"].Value);
+            if (row.Cells["dateOffboarding"].Value != null && row.Cells["dateOffboarding"].Value != DBNull.Value)
+                dtpOffboarding.Value = Convert.ToDateTime(row.Cells["dateOffboarding"].Value);
+            txtInfo.Text = row.Cells["datos"].Value?.ToString();
+
+
+            ToggleButtons(true);
+            this.ResumeLayout();
+        }
+
+        private void dgvEmployees_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Si hace clic fuera de la tabla, limpia el formulario
+            var hit = dgvEmployees.HitTest(e.X, e.Y);
+            if (hit.Type == DataGridViewHitTestType.None)
+            {
+                Clear();
+            }
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Validate(txtName.Text, txtDoc.Text, txtAddress.Text, txtPhone.Text, txtEmail.Text, cmbRol.SelectedValue))
+                {
+                    string name = txtName.Text.Replace("'", "''");
+                    string address = txtAddress.Text.Replace("'", "''");
+                    string email = txtEmail.Text.Replace("'", "''");
+                    string phone = txtPhone.Text.Replace("'", "''");
+                    string additionalData = txtInfo.Text.Replace("'", "''");
+
+                    string sentencia = $@"INSERT INTO TBLEMPLEADO 
+                        (StrNombre, NumDocumento, StrDireccion, StrTelefono, StrEmail, IdRolEmpleado, DtmIngreso, DtmRetiro, StrDatosAdicionales, DtmFechaModifica, StrUsuarioModifico) 
+                        VALUES 
+                        ('{name}', {txtDoc.Text}, '{address}', '{phone}', '{email}', {cmbRol.SelectedValue}, 
+                         '{dtpOnboarding.Value:yyyy-MM-dd HH:mm:ss}', '{dtpOffboarding.Value:yyyy-MM-dd HH:mm:ss}', 
+                         '{additionalData}', GETDATE(), 'Javier')";
+
+                    string resultado = db.RunCommand(sentencia);
+                    MessageBox.Show(resultado, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el empleado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtId.Text))
+                {
+                    MessageBox.Show("Debe seleccionar un empleado de la tabla para actualizar", "Advertencia",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (Validate(txtName.Text, txtDoc.Text, txtAddress.Text, txtPhone.Text, txtEmail.Text, cmbRol.SelectedValue))
+                {
+                    string name = txtName.Text.Replace("'", "''");
+                    string address = txtAddress.Text.Replace("'", "''");
+                    string email = txtEmail.Text.Replace("'", "''");
+                    string phone = txtPhone.Text.Replace("'", "''");
+                    string additionalData = txtInfo.Text.Replace("'", "''");
+
+                    string sentencia = $@"UPDATE TBLEMPLEADO SET 
+                        StrNombre = '{name}',
+                        NumDocumento = {txtDoc.Text},
+                        StrDireccion = '{address}',
+                        StrTelefono = '{phone}',
+                        StrEmail = '{email}',
+                        IdRolEmpleado = {cmbRol.SelectedValue},
+                        DtmIngreso = '{dtpOnboarding.Value:yyyy-MM-dd HH:mm:ss}',
+                        DtmRetiro = '{dtpOffboarding.Value:yyyy-MM-dd HH:mm:ss}',
+                        StrDatosAdicionales = '{additionalData}',
+                        DtmFechaModifica = GETDATE(),
+                        StrUsuarioModifico = 'Javier'
+                        WHERE IdEmpleado = {txtId.Text}";
+
+                    string resultado = db.RunCommand(sentencia);
+                    MessageBox.Show(resultado, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el empleado: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string search = txtSearch.Text;
+            LoadData(search);
         }
     }
 }

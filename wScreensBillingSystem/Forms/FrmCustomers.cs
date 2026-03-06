@@ -23,14 +23,10 @@ public partial class FrmCustomers : Form
     {
         dgvCustomers.Rows.Clear();
 
-        string cmd;
+        string cmd = $"SELECT IdCliente, StrNombre, NumDocumento, StrDireccion, StrTelefono, StrEmail FROM TBLCLIENTES";
         if (!string.IsNullOrWhiteSpace(filter))
         {
-            cmd = $"SELECT IdCliente, StrNombre, NumDocumento, StrDireccion, StrTelefono, StrEmail FROM TBLCLIENTES WHERE StrNombre like '%{filter}%'";
-        }
-        else
-        {
-            cmd = $"SELECT IdCliente, StrNombre, NumDocumento, StrDireccion, StrTelefono, StrEmail FROM TBLCLIENTES";
+            cmd += $" WHERE StrNombre like '%{filter}%'";
         }
 
         dt = db.RunCommandData(cmd);
