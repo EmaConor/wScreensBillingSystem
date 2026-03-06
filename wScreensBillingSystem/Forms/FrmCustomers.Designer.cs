@@ -40,16 +40,21 @@ partial class FrmCustomers
         txtDoc = new MaterialSkin.Controls.MaterialTextBox();
         txtName = new MaterialSkin.Controls.MaterialTextBox();
         pnlSearch = new Panel();
-        dataGridView1 = new DataGridView();
+        dgvCustomers = new DataGridView();
+        id = new DataGridViewTextBoxColumn();
+        nameCustomer = new DataGridViewTextBoxColumn();
+        document = new DataGridViewTextBoxColumn();
+        address = new DataGridViewTextBoxColumn();
+        phone = new DataGridViewTextBoxColumn();
+        email = new DataGridViewTextBoxColumn();
         btnSearch = new MaterialSkin.Controls.MaterialButton();
         txtSearch = new MaterialSkin.Controls.MaterialTextBox();
         btnNew = new MaterialSkin.Controls.MaterialButton();
         btnUpdate = new MaterialSkin.Controls.MaterialButton();
-        btnDelete = new MaterialSkin.Controls.MaterialButton();
         btnOut = new MaterialSkin.Controls.MaterialButton();
         pnlCustomer.SuspendLayout();
         pnlSearch.SuspendLayout();
-        ((ISupportInitialize)dataGridView1).BeginInit();
+        ((ISupportInitialize)dgvCustomers).BeginInit();
         SuspendLayout();
         // 
         // lblTitle
@@ -184,7 +189,7 @@ partial class FrmCustomers
         // 
         // pnlSearch
         // 
-        pnlSearch.Controls.Add(dataGridView1);
+        pnlSearch.Controls.Add(dgvCustomers);
         pnlSearch.Controls.Add(btnSearch);
         pnlSearch.Controls.Add(txtSearch);
         pnlSearch.Location = new Point(-8, 254);
@@ -192,14 +197,57 @@ partial class FrmCustomers
         pnlSearch.Size = new Size(735, 263);
         pnlSearch.TabIndex = 2;
         // 
-        // dataGridView1
+        // dgvCustomers
         // 
-        dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        dataGridView1.Location = new Point(13, 67);
-        dataGridView1.Name = "dataGridView1";
-        dataGridView1.Size = new Size(706, 184);
-        dataGridView1.TabIndex = 5;
-        dataGridView1.Text = "dataGridView1";
+        dgvCustomers.AllowUserToAddRows = false;
+        dgvCustomers.AllowUserToDeleteRows = false;
+        dgvCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { id, nameCustomer, document, address, phone, email });
+        dgvCustomers.Location = new Point(13, 67);
+        dgvCustomers.Name = "dgvCustomers";
+        dgvCustomers.ReadOnly = true;
+        dgvCustomers.Size = new Size(706, 184);
+        dgvCustomers.TabIndex = 5;
+        dgvCustomers.Text = "dataGridView1";
+        dgvCustomers.CellClick += dgvCustomers_CellClick;
+        dgvCustomers.MouseDown += dgvCustomers_MouseDown;
+        // 
+        // id
+        // 
+        id.HeaderText = "ID";
+        id.Name = "id";
+        id.ReadOnly = true;
+        id.Resizable = DataGridViewTriState.False;
+        // 
+        // nameCustomer
+        // 
+        nameCustomer.HeaderText = "Nombre";
+        nameCustomer.Name = "nameCustomer";
+        nameCustomer.ReadOnly = true;
+        // 
+        // document
+        // 
+        document.HeaderText = "Documento";
+        document.Name = "document";
+        document.ReadOnly = true;
+        // 
+        // address
+        // 
+        address.HeaderText = "Direccion";
+        address.Name = "address";
+        address.ReadOnly = true;
+        // 
+        // phone
+        // 
+        phone.HeaderText = "Telefono";
+        phone.Name = "phone";
+        phone.ReadOnly = true;
+        // 
+        // email
+        // 
+        email.HeaderText = "Email";
+        email.Name = "email";
+        email.ReadOnly = true;
         // 
         // btnSearch
         // 
@@ -219,6 +267,7 @@ partial class FrmCustomers
         btnSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
         btnSearch.UseAccentColor = false;
         btnSearch.UseVisualStyleBackColor = true;
+        btnSearch.Click += btnSearch_Click;
         // 
         // txtSearch
         // 
@@ -245,7 +294,7 @@ partial class FrmCustomers
         btnNew.Depth = 0;
         btnNew.HighEmphasis = true;
         btnNew.Icon = null;
-        btnNew.Location = new Point(573, 74);
+        btnNew.Location = new Point(573, 116);
         btnNew.Margin = new Padding(4, 6, 4, 6);
         btnNew.MouseState = MaterialSkin.MouseState.HOVER;
         btnNew.Name = "btnNew";
@@ -256,12 +305,14 @@ partial class FrmCustomers
         btnNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
         btnNew.UseAccentColor = false;
         btnNew.UseVisualStyleBackColor = true;
+        btnNew.Click += btnNew_Click;
         // 
         // btnUpdate
         // 
         btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
         btnUpdate.Depth = 0;
+        btnUpdate.DrawShadows = false;
         btnUpdate.HighEmphasis = true;
         btnUpdate.Icon = null;
         btnUpdate.Location = new Point(573, 116);
@@ -275,25 +326,8 @@ partial class FrmCustomers
         btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
         btnUpdate.UseAccentColor = false;
         btnUpdate.UseVisualStyleBackColor = true;
-        // 
-        // btnDelete
-        // 
-        btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-        btnDelete.Depth = 0;
-        btnDelete.HighEmphasis = true;
-        btnDelete.Icon = null;
-        btnDelete.Location = new Point(573, 158);
-        btnDelete.Margin = new Padding(4, 6, 4, 6);
-        btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
-        btnDelete.Name = "btnDelete";
-        btnDelete.NoAccentTextColor = Color.Empty;
-        btnDelete.Size = new Size(88, 36);
-        btnDelete.TabIndex = 7;
-        btnDelete.Text = "Eliminar";
-        btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-        btnDelete.UseAccentColor = false;
-        btnDelete.UseVisualStyleBackColor = true;
+        btnUpdate.Visible = false;
+        btnUpdate.Click += btnUpdate_Click;
         // 
         // btnOut
         // 
@@ -322,7 +356,6 @@ partial class FrmCustomers
         ClientSize = new Size(811, 517);
         ControlBox = false;
         Controls.Add(btnOut);
-        Controls.Add(btnDelete);
         Controls.Add(btnUpdate);
         Controls.Add(btnNew);
         Controls.Add(pnlSearch);
@@ -334,18 +367,16 @@ partial class FrmCustomers
         pnlCustomer.PerformLayout();
         pnlSearch.ResumeLayout(false);
         pnlSearch.PerformLayout();
-        ((ISupportInitialize)dataGridView1).EndInit();
+        ((ISupportInitialize)dgvCustomers).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
 
     private MaterialSkin.Controls.MaterialButton btnOut;
 
-    private System.Windows.Forms.DataGridView dataGridView1;
+    private System.Windows.Forms.DataGridView dgvCustomers;
 
     private MaterialSkin.Controls.MaterialButton btnSearch;
-
-    private MaterialSkin.Controls.MaterialButton btnDelete;
 
     private MaterialSkin.Controls.MaterialButton btnNew;
     private MaterialSkin.Controls.MaterialButton btnUpdate;
@@ -366,4 +397,10 @@ partial class FrmCustomers
     #endregion
 
     private TextBox txtId;
+    private DataGridViewTextBoxColumn id;
+    private DataGridViewTextBoxColumn nameCustomer;
+    private DataGridViewTextBoxColumn document;
+    private DataGridViewTextBoxColumn address;
+    private DataGridViewTextBoxColumn phone;
+    private DataGridViewTextBoxColumn email;
 }

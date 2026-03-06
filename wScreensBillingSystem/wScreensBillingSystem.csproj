@@ -9,23 +9,28 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Update="FrmMain.cs">
+      <Compile Update="Forms\FrmMain.cs">
         <SubType>Form</SubType>
       </Compile>
-      <Compile Update="FrmCustomers.cs">
+      <Compile Update="Forms\FrmCustomers.cs">
         <SubType>Form</SubType>
       </Compile>
-      <Compile Update="FrmProducts.cs">
+      <Compile Update="Forms\FrmProducts.cs">
         <SubType>Form</SubType>
       </Compile>
-      <Compile Update="FrmInvoiceModal.cs">
+      <Compile Update="Forms\FrmInvoiceModal.cs">
         <SubType>Form</SubType>
       </Compile>
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
+      <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.4" />
       <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3719.77" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\" />
     </ItemGroup>
 
 </Project>

@@ -1,3 +1,5 @@
+using wScreensBillingSystem.Data;
+
 namespace wScreensBillingSystem;
 
 public partial class FrmLogin : Form
@@ -16,23 +18,24 @@ public partial class FrmLogin : Form
     {
         string user = txtUser.Text.Trim();
         string pass = txtPassword.Text.Trim();
-
         if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
         {
             MessageBox.Show("Ingrese el nombre de usuario y clave");
             return;
         }
 
-        if (user.Equals("admin") && pass.Equals("admin"))
+        BillingDB db = new();
+        string res = db.ValidateUser(user, pass);
+        if (res != "")
         {
-            this.DialogResult = DialogResult.OK;
-            FrmMain frm = new FrmMain();
-            this.Hide();
+            MessageBox.Show("Bienvenid@: " +  res);
+            FrmMain frm = new();
             frm.Show();
+            this.Hide();
         }
         else
         {
-            MessageBox.Show("Usuario y clave no encontrado");
+            MessageBox.Show("Usuario y/o clave no encontrado");
             txtUser.Focus();
         }
     }
