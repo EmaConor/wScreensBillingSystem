@@ -60,9 +60,9 @@ namespace wScreensBillingSystem
             pnlCustomer.Controls.Add(txtKeyword);
             pnlCustomer.Controls.Add(txtUser);
             pnlCustomer.Controls.Add(cmbEmployee);
-            pnlCustomer.Location = new Point(101, 147);
+            pnlCustomer.Location = new Point(72, 147);
             pnlCustomer.Name = "pnlCustomer";
-            pnlCustomer.Size = new Size(495, 225);
+            pnlCustomer.Size = new Size(524, 225);
             pnlCustomer.TabIndex = 1;
             // 
             // txtKeyword
@@ -73,7 +73,7 @@ namespace wScreensBillingSystem
             txtKeyword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtKeyword.Hint = "Clave";
             txtKeyword.LeadingIcon = null;
-            txtKeyword.Location = new Point(41, 148);
+            txtKeyword.Location = new Point(58, 148);
             txtKeyword.MaxLength = 50;
             txtKeyword.MouseState = MaterialSkin.MouseState.OUT;
             txtKeyword.Multiline = false;
@@ -92,7 +92,7 @@ namespace wScreensBillingSystem
             txtUser.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtUser.Hint = "Usuario";
             txtUser.LeadingIcon = null;
-            txtUser.Location = new Point(41, 106);
+            txtUser.Location = new Point(58, 106);
             txtUser.MaxLength = 50;
             txtUser.MouseState = MaterialSkin.MouseState.OUT;
             txtUser.Multiline = false;
@@ -118,14 +118,15 @@ namespace wScreensBillingSystem
             cmbEmployee.Hint = "Empleado";
             cmbEmployee.IntegralHeight = false;
             cmbEmployee.ItemHeight = 29;
-            cmbEmployee.Location = new Point(41, 37);
+            cmbEmployee.Location = new Point(24, 37);
             cmbEmployee.MaxDropDownItems = 4;
             cmbEmployee.MouseState = MaterialSkin.MouseState.OUT;
             cmbEmployee.Name = "cmbEmployee";
-            cmbEmployee.Size = new Size(422, 35);
+            cmbEmployee.Size = new Size(439, 35);
             cmbEmployee.StartIndex = 0;
             cmbEmployee.TabIndex = 0;
             cmbEmployee.UseTallSize = false;
+            cmbEmployee.SelectedValueChanged += cmbEmployee_SelectedValueChanged;
             // 
             // btnConsult
             // 
@@ -134,7 +135,7 @@ namespace wScreensBillingSystem
             btnConsult.Depth = 0;
             btnConsult.HighEmphasis = true;
             btnConsult.Icon = null;
-            btnConsult.Location = new Point(615, 199);
+            btnConsult.Location = new Point(615, 241);
             btnConsult.Margin = new Padding(4, 6, 4, 6);
             btnConsult.MouseState = MaterialSkin.MouseState.HOVER;
             btnConsult.Name = "btnConsult";
@@ -145,15 +146,17 @@ namespace wScreensBillingSystem
             btnConsult.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnConsult.UseAccentColor = false;
             btnConsult.UseVisualStyleBackColor = true;
+            btnConsult.Click += btnConsult_Click;
             // 
             // btnUpdate
             // 
             btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnUpdate.Depth = 0;
+            btnUpdate.DrawShadows = false;
             btnUpdate.HighEmphasis = true;
             btnUpdate.Icon = null;
-            btnUpdate.Location = new Point(615, 241);
+            btnUpdate.Location = new Point(615, 220);
             btnUpdate.Margin = new Padding(4, 6, 4, 6);
             btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdate.Name = "btnUpdate";
@@ -164,15 +167,18 @@ namespace wScreensBillingSystem
             btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnUpdate.UseAccentColor = false;
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Visible = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
             btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnDelete.Depth = 0;
+            btnDelete.DrawShadows = false;
             btnDelete.HighEmphasis = true;
             btnDelete.Icon = null;
-            btnDelete.Location = new Point(615, 283);
+            btnDelete.Location = new Point(615, 263);
             btnDelete.Margin = new Padding(4, 6, 4, 6);
             btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
             btnDelete.Name = "btnDelete";
@@ -183,6 +189,8 @@ namespace wScreensBillingSystem
             btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnDelete.UseAccentColor = false;
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Visible = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnOut
             // 
@@ -239,5 +247,6 @@ namespace wScreensBillingSystem
         private MaterialSkin.Controls.MaterialTextBox txtKeyword;
         private MaterialSkin.Controls.MaterialTextBox txtUser;
         private MaterialSkin.Controls.MaterialComboBox cmbEmployee;
+        private MaterialSkin.Controls.MaterialButton btnCancel;
     }
 }

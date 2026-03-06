@@ -44,7 +44,6 @@ namespace wScreensBillingSystem.Data
             }
         }
 
-
         public string ValidateUser(string username, string password)
         {
             try

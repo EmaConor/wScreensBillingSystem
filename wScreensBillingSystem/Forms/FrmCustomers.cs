@@ -140,6 +140,7 @@ public partial class FrmCustomers : Form
             MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
+
     private void btnOut_Click(object sender, EventArgs e)
     {
         this.Close();
