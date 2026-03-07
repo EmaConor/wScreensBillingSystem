@@ -130,7 +130,7 @@ public partial class FrmCustomers : Form
                 }
             }
         }
-        catch (Exception ex) 
+        catch (Exception ex)
         {
             MessageBox.Show("Error al crear el cliente: " + ex.Message, "Error",
             MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -220,5 +220,10 @@ public partial class FrmCustomers : Form
         {
             return false;
         }
+    }
+
+    private void btnClear_Click(object sender, EventArgs e)
+    {
+        Clear();
     }
 }

@@ -134,10 +134,15 @@ namespace wScreensBillingSystem
                 MessageBox.Show("Debe seleccionar un empleado de la lista para eliminar");
                 return;
             }
-            string sentencia = $"Exec Eliminar_Seguridad '{Convert.ToInt32(cmbEmployee.SelectedValue)}'";
-            MessageBox.Show(db.RunCommand(sentencia));
-            txtUser.Text = "";
-            txtKeyword.Text = "";
+
+            var result = MessageBox.Show("¿Está seguro de eliminar este usuario?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                string sentencia = $"Exec Eliminar_Seguridad '{Convert.ToInt32(cmbEmployee.SelectedValue)}'";
+                MessageBox.Show(db.RunCommand(sentencia));
+                txtUser.Text = "";
+                txtKeyword.Text = "";
+            }
         }
 
         private void btnOut_Click(object sender, EventArgs e)

@@ -268,5 +268,10 @@ namespace wScreensBillingSystem
             string search = txtSearch.Text;
             LoadData(search);
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
     }
 }

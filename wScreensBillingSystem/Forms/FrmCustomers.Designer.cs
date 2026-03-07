@@ -52,6 +52,7 @@ partial class FrmCustomers
         btnNew = new MaterialSkin.Controls.MaterialButton();
         btnUpdate = new MaterialSkin.Controls.MaterialButton();
         btnOut = new MaterialSkin.Controls.MaterialButton();
+        btnClear = new MaterialSkin.Controls.MaterialButton();
         pnlCustomer.SuspendLayout();
         pnlSearch.SuspendLayout();
         ((ISupportInitialize)dgvCustomers).BeginInit();
@@ -349,12 +350,33 @@ partial class FrmCustomers
         btnOut.UseVisualStyleBackColor = true;
         btnOut.Click += btnOut_Click;
         // 
+        // btnClear
+        // 
+        btnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        btnClear.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+        btnClear.Depth = 0;
+        btnClear.HighEmphasis = true;
+        btnClear.Icon = null;
+        btnClear.Location = new Point(719, 9);
+        btnClear.Margin = new Padding(4, 6, 4, 6);
+        btnClear.MouseState = MaterialSkin.MouseState.HOVER;
+        btnClear.Name = "btnClear";
+        btnClear.NoAccentTextColor = Color.Empty;
+        btnClear.Size = new Size(79, 36);
+        btnClear.TabIndex = 11;
+        btnClear.Text = "Limpiar";
+        btnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+        btnClear.UseAccentColor = false;
+        btnClear.UseVisualStyleBackColor = true;
+        btnClear.Click += btnClear_Click;
+        // 
         // FrmCustomers
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(811, 517);
         ControlBox = false;
+        Controls.Add(btnClear);
         Controls.Add(btnOut);
         Controls.Add(btnUpdate);
         Controls.Add(btnNew);
@@ -403,4 +425,5 @@ partial class FrmCustomers
     private DataGridViewTextBoxColumn address;
     private DataGridViewTextBoxColumn phone;
     private DataGridViewTextBoxColumn email;
+    private MaterialSkin.Controls.MaterialButton btnClear;
 }
