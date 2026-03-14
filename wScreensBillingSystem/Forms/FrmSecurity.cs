@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using wBusinessLogicLayer;
 using wScreensBillingSystem.Data;
 
 namespace wScreensBillingSystem
@@ -22,14 +23,12 @@ namespace wScreensBillingSystem
             LoadComboBox();
         }
 
-        BillingDB db = new();
+        DataTable dt = new();
+        Security security = new();
 
         private void LoadComboBox()
         {
-            DataTable dt = new();
-            dt = db.LoadTable("TBLEMPLEADO", "");
-
-            cmbEmployee.DataSource = dt;
+            cmbEmployee.DataSource = security.LoadEmployee();
             cmbEmployee.DisplayMember = "strNombre";
             cmbEmployee.ValueMember = "IdEmpleado";
             cmbEmployee.SelectedValue = 0;
@@ -49,7 +48,7 @@ namespace wScreensBillingSystem
         {
             LoadComboBox();
 
-            cmbEmployee.SelectedValue = 0;
+            cmbEmployee.SelectedValue = -1;
             txtUser.Clear();
             txtKeyword.Clear();
 
@@ -58,29 +57,34 @@ namespace wScreensBillingSystem
 
         private void btnConsult_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(cmbEmployee.SelectedValue.ToString()))
+            try
             {
-                MessageBox.Show("Debe seleccionar un empleado de la lista para consultar");
-                return;
-            }
-            string id = cmbEmployee.SelectedValue.ToString();
+                if (string.IsNullOrWhiteSpace(cmbEmployee.SelectedValue.ToString()))
+                {
+                    MessageBox.Show("Debe seleccionar un empleado de la lista para consultar");
+                    return;
+                }
+                int employeeId = Convert.ToInt32(cmbEmployee.SelectedValue);
 
-            DataTable dt = new();
-            string sentence = "select StrUsuario,StrClave from TBLSEGURIDAD where IdEmpleado=" + id;
-            dt = db.RunCommandData(sentence);
-            if (dt.Rows.Count > 0)
-            {
-                txtUser.Text = dt.Rows[0]["StrUsuario"].ToString();
-                txtKeyword.Text = dt.Rows[0]["StrClave"].ToString();
+                dt = security.GetEmployeeById(employeeId);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    txtUser.Text = dt.Rows[0]["StrUsuario"].ToString();
+                    txtKeyword.Text = dt.Rows[0]["StrClave"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("El usuario no dispone de datos de ingreso");
+                    txtUser.Text = "";
+                    txtKeyword.Text = "";
+                }
+                ToggleButtons(true);
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("El usuario no dispone de datos de ingreso");
-                txtUser.Text = "";
-                txtKeyword.Text = "";
+                MessageBox.Show("Error al cargar datos del usuario: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            ToggleButtons(true);
         }
 
         private Boolean Validate(string user, string keyword)
@@ -108,17 +112,25 @@ namespace wScreensBillingSystem
                 MessageBox.Show("Debe seleccionar un empleado de la lista para consultar");
                 return;
             }
-            string id = cmbEmployee.SelectedValue.ToString();
-            string user = txtUser.Text;
-            string keyword = txtKeyword.Text;
+            int id = Convert.ToInt32(cmbEmployee.SelectedValue);
+            string user = txtUser.Text.Trim();
+            string keyword = txtKeyword.Text.Trim();
 
+            var result = MessageBox.Show("¿Está seguro de actualizar este usuario?", "Confirmar",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (Validate(user, keyword))
+            if (result == DialogResult.Yes && Validate(user, keyword))
             {
                 try
                 {
-                    string sentencia = $"Exec actualizar_Seguridad '{Convert.ToInt32(id)}','{user}','{keyword}','{DateTime.Now}','Javier'";
-                    MessageBox.Show(db.RunCommand(sentencia));
+                    security.EmployeeId = id;
+                    security.User = user;
+                    security.Password = keyword;
+                    security.WhoModified = "Ema";
+
+                    string message = security.Update();
+                    MessageBox.Show(message, "Información", MessageBoxButtons.OK,
+                       message.Contains("ERROR") ? MessageBoxIcon.Error : MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
@@ -138,10 +150,18 @@ namespace wScreensBillingSystem
             var result = MessageBox.Show("¿Está seguro de eliminar este usuario?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                string sentencia = $"Exec Eliminar_Seguridad '{Convert.ToInt32(cmbEmployee.SelectedValue)}'";
-                MessageBox.Show(db.RunCommand(sentencia));
-                txtUser.Text = "";
-                txtKeyword.Text = "";
+                security.EmployeeId = Convert.ToInt32(cmbEmployee.SelectedValue);
+
+                string message = security.Delete();
+                if (message.Contains("ERROR"))
+                {
+                    MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(message, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Clear();
+                }
             }
         }
 
@@ -164,5 +184,9 @@ namespace wScreensBillingSystem
             ToggleButtons(false);
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
     }
 }

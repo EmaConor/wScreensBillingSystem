@@ -1,3 +1,4 @@
+using wBusinessLogicLayer;
 using wScreensBillingSystem.Data;
 
 namespace wScreensBillingSystem;
@@ -16,19 +17,32 @@ public partial class FrmLogin : Form
 
     private void btnVerify_Click(object sender, EventArgs e)
     {
+        ValidateUser ObjValidate = new();
+
         string user = txtUser.Text.Trim();
         string pass = txtPassword.Text.Trim();
         if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
         {
             MessageBox.Show("Ingrese el nombre de usuario y clave");
+            if (string.IsNullOrEmpty(user))
+            {
+                txtUser.Focus();
+            }
+            else
+            {
+                txtPassword.Focus();
+            }
             return;
         }
 
-        BillingDB db = new();
-        string res = db.ValidateUser(user, pass);
-        if (res != "")
+        ObjValidate.Username = user;
+        ObjValidate.Password = pass;
+
+        ObjValidate.Validate();
+
+        if (ObjValidate.Id != 0)
         {
-            MessageBox.Show("Bienvenid@: " +  res);
+            MessageBox.Show("Datos Validos");
             FrmMain frm = new();
             frm.Show();
             this.Hide();

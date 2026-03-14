@@ -33,4 +33,8 @@
       <Folder Include="Models\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\wBusinessLogicLayer\wBusinessLogicLayer.csproj" />
+    </ItemGroup>
+
 </Project>

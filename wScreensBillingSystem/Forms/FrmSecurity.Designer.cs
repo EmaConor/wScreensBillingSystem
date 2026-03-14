@@ -39,6 +39,7 @@ namespace wScreensBillingSystem
             btnUpdate = new MaterialSkin.Controls.MaterialButton();
             btnDelete = new MaterialSkin.Controls.MaterialButton();
             btnOut = new MaterialSkin.Controls.MaterialButton();
+            btnClear = new MaterialSkin.Controls.MaterialButton();
             pnlCustomer.SuspendLayout();
             SuspendLayout();
             // 
@@ -212,12 +213,33 @@ namespace wScreensBillingSystem
             btnOut.UseVisualStyleBackColor = true;
             btnOut.Click += btnOut_Click;
             // 
+            // btnClear
+            // 
+            btnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnClear.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnClear.Depth = 0;
+            btnClear.HighEmphasis = true;
+            btnClear.Icon = null;
+            btnClear.Location = new Point(719, 9);
+            btnClear.Margin = new Padding(4, 6, 4, 6);
+            btnClear.MouseState = MaterialSkin.MouseState.HOVER;
+            btnClear.Name = "btnClear";
+            btnClear.NoAccentTextColor = Color.Empty;
+            btnClear.Size = new Size(79, 36);
+            btnClear.TabIndex = 12;
+            btnClear.Text = "Limpiar";
+            btnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnClear.UseAccentColor = false;
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
+            // 
             // FrmSecurity
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(811, 517);
             ControlBox = false;
+            Controls.Add(btnClear);
             Controls.Add(btnOut);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
@@ -248,5 +270,6 @@ namespace wScreensBillingSystem
         private MaterialSkin.Controls.MaterialTextBox txtUser;
         private MaterialSkin.Controls.MaterialComboBox cmbEmployee;
         private MaterialSkin.Controls.MaterialButton btnCancel;
+        private MaterialSkin.Controls.MaterialButton btnClear;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using wScreensBillingSystem.Data;
+using wBusinessLogicLayer;
 
 namespace wScreensBillingSystem
 {
@@ -21,14 +22,12 @@ namespace wScreensBillingSystem
             LoadData();
         }
 
-        BillingDB db = new();
+        DataTable dt = new();
+        private readonly Employee employee = new();
 
         private void LoadComboBox()
         {
-            DataTable dt = new();
-            dt = db.LoadTable("TBLROLES", "");
-
-            cmbRol.DataSource = dt;
+            cmbRol.DataSource = employee.LoadRol();
             cmbRol.DisplayMember = "StrDescripcion";
             cmbRol.ValueMember = "IdRolEmpleado";
             cmbRol.SelectedValue = -1;
@@ -37,23 +36,18 @@ namespace wScreensBillingSystem
         private void LoadData(string filter = "")
         {
             dgvEmployees.Rows.Clear();
+            dt = employee.LoadTable(filter);
 
-
-            DataTable dt = new();
-            string cmd;
-            if (!string.IsNullOrWhiteSpace(filter))
+            if (dt.Rows.Count > 0)
             {
-                cmd = $"SELECT e.IdEmpleado, e.StrNombre, e.NumDocumento, e.StrDireccion, e.StrTelefono, e.StrEmail, e.IdRolEmpleado, r.StrDescripcion AS RolDescripcion, e.DtmIngreso, e.DtmRetiro, e.StrDatosAdicionales FROM TBLEMPLEADO e INNER JOIN TBLROLES r ON e.IdRolEmpleado = r.IdRolEmpleado WHERE e.StrNombre LIKE '%{{filter}}%'";
+                foreach (DataRow row in dt.Rows)
+                {
+                    dgvEmployees.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10]);
+                }
             }
             else
             {
-                cmd = $"SELECT e.IdEmpleado, e.StrNombre, e.NumDocumento, e.StrDireccion, e.StrTelefono, e.StrEmail, e.IdRolEmpleado, r.StrDescripcion AS RolDescripcion, e.DtmIngreso, e.DtmRetiro, e.StrDatosAdicionales FROM TBLEMPLEADO e INNER JOIN TBLROLES r ON e.IdRolEmpleado = r.IdRolEmpleado";
-            }
-
-            dt = db.RunCommandData(cmd);
-            foreach (DataRow row in dt.Rows)
-            {
-                dgvEmployees.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10]);
+                MessageBox.Show("No se encontraron empleados", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -194,22 +188,27 @@ namespace wScreensBillingSystem
             {
                 if (Validate(txtName.Text, txtDoc.Text, txtAddress.Text, txtPhone.Text, txtEmail.Text, cmbRol.SelectedValue))
                 {
-                    string name = txtName.Text.Replace("'", "''");
-                    string address = txtAddress.Text.Replace("'", "''");
-                    string email = txtEmail.Text.Replace("'", "''");
-                    string phone = txtPhone.Text.Replace("'", "''");
-                    string additionalData = txtInfo.Text.Replace("'", "''");
+                    Employee newEmployee = new()
+                    {
+                        Name = txtName.Text,
+                        Document = double.Parse(txtDoc.Text),
+                        Address = txtAddress.Text,
+                        Phone = txtPhone.Text,
+                        Email = txtEmail.Text,
+                        IdRol = (int)cmbRol.SelectedValue,
+                        Onboarding = dtpOnboarding.Value,
+                        Offboarding = dtpOffboarding.Value,
+                        Info = txtInfo.Text,
+                        WhoModified = "Ema"
+                    };
 
-                    string sentencia = $@"INSERT INTO TBLEMPLEADO 
-                        (StrNombre, NumDocumento, StrDireccion, StrTelefono, StrEmail, IdRolEmpleado, DtmIngreso, DtmRetiro, StrDatosAdicionales, DtmFechaModifica, StrUsuarioModifico) 
-                        VALUES 
-                        ('{name}', {txtDoc.Text}, '{address}', '{phone}', '{email}', {cmbRol.SelectedValue}, 
-                         '{dtpOnboarding.Value:yyyy-MM-dd HH:mm:ss}', '{dtpOffboarding.Value:yyyy-MM-dd HH:mm:ss}', 
-                         '{additionalData}', GETDATE(), 'Javier')";
+                    string message = newEmployee.Insert();
+                    MessageBox.Show(message, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    string resultado = db.RunCommand(sentencia);
-                    MessageBox.Show(resultado, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Clear();
+                    if (!message.Contains("ERROR"))
+                    {
+                        Clear();
+                    }
                 }
             }
             catch (Exception ex)
@@ -231,28 +230,20 @@ namespace wScreensBillingSystem
 
                 if (Validate(txtName.Text, txtDoc.Text, txtAddress.Text, txtPhone.Text, txtEmail.Text, cmbRol.SelectedValue))
                 {
-                    string name = txtName.Text.Replace("'", "''");
-                    string address = txtAddress.Text.Replace("'", "''");
-                    string email = txtEmail.Text.Replace("'", "''");
-                    string phone = txtPhone.Text.Replace("'", "''");
-                    string additionalData = txtInfo.Text.Replace("'", "''");
+                    employee.Id = int.Parse(txtId.Text);
+                    employee.Name = txtName.Text;
+                    employee.Document = double.Parse(txtDoc.Text);
+                    employee.Address = txtAddress.Text;
+                    employee.Phone = txtPhone.Text;
+                    employee.Email = txtEmail.Text;
+                    employee.IdRol = (int)cmbRol.SelectedValue;
+                    employee.Onboarding = dtpOnboarding.Value;
+                    employee.Offboarding = dtpOffboarding.Value;
+                    employee.Info = txtInfo.Text;
+                    employee.WhoModified = "Ema";
 
-                    string sentencia = $@"UPDATE TBLEMPLEADO SET 
-                        StrNombre = '{name}',
-                        NumDocumento = {txtDoc.Text},
-                        StrDireccion = '{address}',
-                        StrTelefono = '{phone}',
-                        StrEmail = '{email}',
-                        IdRolEmpleado = {cmbRol.SelectedValue},
-                        DtmIngreso = '{dtpOnboarding.Value:yyyy-MM-dd HH:mm:ss}',
-                        DtmRetiro = '{dtpOffboarding.Value:yyyy-MM-dd HH:mm:ss}',
-                        StrDatosAdicionales = '{additionalData}',
-                        DtmFechaModifica = GETDATE(),
-                        StrUsuarioModifico = 'Javier'
-                        WHERE IdEmpleado = {txtId.Text}";
-
-                    string resultado = db.RunCommand(sentencia);
-                    MessageBox.Show(resultado, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string message = employee.Update();
+                    MessageBox.Show(message, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Clear();
                 }
             }
