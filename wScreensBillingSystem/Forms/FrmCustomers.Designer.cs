@@ -316,7 +316,7 @@ partial class FrmCustomers
         btnUpdate.DrawShadows = false;
         btnUpdate.HighEmphasis = true;
         btnUpdate.Icon = null;
-        btnUpdate.Location = new Point(573, 116);
+        btnUpdate.Location = new Point(573, 104);
         btnUpdate.Margin = new Padding(4, 6, 4, 6);
         btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
         btnUpdate.Name = "btnUpdate";

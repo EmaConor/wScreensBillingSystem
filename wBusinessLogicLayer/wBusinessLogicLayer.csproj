@@ -167,6 +167,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customers.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Rol.cs" />
     <Compile Include="Security.cs" />

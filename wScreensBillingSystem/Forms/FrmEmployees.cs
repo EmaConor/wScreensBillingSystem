@@ -48,6 +48,8 @@ namespace wScreensBillingSystem
             else
             {
                 MessageBox.Show("No se encontraron empleados", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
+                txtSearch.Clear();
             }
         }
 

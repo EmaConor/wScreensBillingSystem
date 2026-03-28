@@ -4,6 +4,7 @@ using System.Collections;
 using System.Data;
 using wScreensBillingSystem.Data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using wBusinessLogicLayer;
 
 namespace wScreensBillingSystem;
 
@@ -17,23 +18,27 @@ public partial class FrmCustomers : Form
     }
 
     DataTable dt = new();
-    BillingDB db = new();
+    private readonly Customers customer = new();
 
     private void LoadData(string filter = "")
     {
         dgvCustomers.Rows.Clear();
+        dt = customer.LoadTable(filter);
 
-        string cmd = $"SELECT IdCliente, StrNombre, NumDocumento, StrDireccion, StrTelefono, StrEmail FROM TBLCLIENTES";
-        if (!string.IsNullOrWhiteSpace(filter))
+        if (dt.Rows.Count > 0)
         {
-            cmd += $" WHERE StrNombre like '%{filter}%'";
+            foreach (DataRow row in dt.Rows)
+            {
+                dgvCustomers.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5]);
+            }
+        }
+        else
+        {
+            MessageBox.Show("No se encontraron clientes", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadData();
+            txtSearch.Clear();
         }
 
-        dt = db.RunCommandData(cmd);
-        foreach (DataRow row in dt.Rows)
-        {
-            dgvCustomers.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5]);
-        }
     }
 
     private void ToggleButtons(bool isEdit)
@@ -73,7 +78,8 @@ public partial class FrmCustomers : Form
         {
             if (string.IsNullOrWhiteSpace(txtId.Text))
             {
-                MessageBox.Show("Debe seleccionar un cliente de la tabla para actualizar");
+                MessageBox.Show("Debe seleccionar un cliente de la tabla para actualizar", "Advertencia",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -87,16 +93,17 @@ public partial class FrmCustomers : Form
 
             if (Validate(name, document, address, phone, email))
             {
-                try
-                {
-                    string sentencia = $"Exec [actualizar_Cliente] {id},'{name}',{document} ,'{address}','{phone}', '{email}', 'Javier','{DateTime.Now:d}'";
-                    MessageBox.Show(db.RunCommand(sentencia));
-                    Clear();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al actualizar en la base de datos");
-                }
+                customer.Id = id;
+                customer.Name = name;
+                customer.Document = double.Parse(document);
+                customer.Address = address;
+                customer.Phone = phone;
+                customer.Email = email;
+                customer.WhoModified = "Ema";
+
+                string message = customer.Update();
+                MessageBox.Show(message, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Clear();
             }
 
         }
@@ -118,22 +125,29 @@ public partial class FrmCustomers : Form
 
             if (Validate(name, document, address, phone, email))
             {
-                try
+                Customers newCustomer = new()
                 {
-                    string sentencia = $@"INSERT INTO TBLCLIENTES (StrNombre, NumDocumento, StrDireccion, StrTelefono, StrEmail, DtmFechaModifica, StrUsuarioModifica) VALUES  ('{name}', {document}, '{address}', '{phone}', '{email}', GETDATE(), 'Javier')";
-                    MessageBox.Show(db.RunCommand(sentencia));
+                    Name = name,
+                    Document = double.Parse(document),
+                    Address = address,
+                    Phone = phone,
+                    Email = email,
+                    WhoModified = "Ema"
+                };        
+                
+                string message = newCustomer.Update();
+                MessageBox.Show(message, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (!message.Contains("ERROR"))
+                {
                     Clear();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al actualizar en la base de datos");
                 }
             }
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Error al crear el cliente: " + ex.Message, "Error",
-            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("error al crear el cliente: " + ex.Message, "error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
