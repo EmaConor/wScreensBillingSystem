@@ -1,7 +1,10 @@
 ﻿using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.ApplicationServices;
+using Microsoft.VisualBasic.Devices;
 using System.Collections;
 using System.Data;
+using System.Globalization;
+using wBusinessLogicLayer;
 using wScreensBillingSystem.Data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
@@ -17,14 +20,12 @@ public partial class FrmProducts : Form
         LoadData();
     }
 
-    BillingDB db = new();
+    DataTable dt = new();
+    private readonly Product product = new();
 
     private void LoadComboBox()
     {
-        DataTable dt = new();
-        dt = db.LoadTable("TBLCATEGORIA_PROD", "");
-
-        cmbCategory.DataSource = dt;
+        cmbCategory.DataSource = product.LoadCategory();
         cmbCategory.DisplayMember = "StrDescripcion";
         cmbCategory.ValueMember = "IdCategoria";
         cmbCategory.SelectedValue = -1;
@@ -33,17 +34,20 @@ public partial class FrmProducts : Form
     private void LoadData(string filter = "")
     {
         dgvProducts.Rows.Clear();
+        dt = product.LoadTable(filter);
 
-        string cmd = $"SELECT p.[IdProducto], p.[StrNombre], p.[StrCodigo], p.[NumPrecioCompra], p.[NumPrecioVenta],  p.[NumStock], p.[IdCategoria], c.StrDescripcion, p.[StrDetalle] FROM [TBLPRODUCTO] p INNER JOIN TBLCATEGORIA_PROD c ON p.[IdCategoria] = c.IdCategoria";
-        if (!string.IsNullOrWhiteSpace(filter))
+        if (dt.Rows.Count > 0)
         {
-            cmd += $" WHERE p.[StrNombre] like '%{filter}%'";
+            foreach (DataRow row in dt.Rows)
+            {
+                dgvProducts.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]);
+            }
         }
-
-        DataTable dt = db.RunCommandData(cmd);
-        foreach (DataRow row in dt.Rows)
+        else
         {
-            dgvProducts.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]);
+            MessageBox.Show("No se encontraron productos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            txtSearch.Clear(); 
+            LoadData();
         }
     }
 
@@ -111,57 +115,39 @@ public partial class FrmProducts : Form
         }
     }
 
-    private Boolean Validate(string name, string code, string supplierPrice, string salePrice, string stock, object idCategory)
+    private Boolean Validate()
     {
-        if (string.IsNullOrWhiteSpace(name))
+        if (string.IsNullOrWhiteSpace(txtName.Text))
         {
             MessageBox.Show("El nombre es obligatorio", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             txtName.Focus();
             return false;
         }
-        if (string.IsNullOrWhiteSpace(code))
+        if (string.IsNullOrWhiteSpace(txtCode.Text))
         {
             MessageBox.Show("El codigo es obligatorio", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             txtCode.Focus();
             return false;
         }
-        if (string.IsNullOrWhiteSpace(supplierPrice))
+        if (!decimal.TryParse(txtSupplierPrice.Text, out _))
         {
-            MessageBox.Show("El precio compra es obligatoria", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("El precio de compra debe ser un número válido");
             txtSupplierPrice.Focus();
             return false;
         }
-        if (!isNumeric(supplierPrice))
+        if (!decimal.TryParse(txtSalePrice.Text, out _))
         {
-            MessageBox.Show("El precio compra debe ser numerico");
-            txtSupplierPrice.Focus();
-            return false;
-        }
-        if (string.IsNullOrWhiteSpace(salePrice))
-        {
-            MessageBox.Show("El precio venta es obligatoria", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("El precio de venta debe ser un número válido");
             txtSalePrice.Focus();
             return false;
         }
-        if (!isNumeric(salePrice))
+        if (!int.TryParse(txtStock.Text, out _))
         {
-            MessageBox.Show("El precio venta debe ser numerico");
-            txtSalePrice.Focus();
-            return false;
-        }
-        if (string.IsNullOrWhiteSpace(stock))
-        {
-            MessageBox.Show("La cantidad es obligatoria", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("El stock debe ser un número entero");
             txtStock.Focus();
             return false;
         }
-        if (!isNumeric(stock))
-        {
-            MessageBox.Show("La cantidad debe ser numerico");
-            txtStock.Focus();
-            return false;
-        }
-        if (idCategory == null || Convert.ToInt32(idCategory) <= 0)
+        if (cmbCategory.SelectedValue == null || Convert.ToInt32(cmbCategory.SelectedValue) <= 0)
         {
             MessageBox.Show("Debe seleccionar una categoria", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             cmbCategory.Focus();
@@ -179,24 +165,27 @@ public partial class FrmProducts : Form
     {
         try
         {
-            if (Validate(txtName.Text, txtCode.Text, txtSupplierPrice.Text, txtSalePrice.Text, txtStock.Text, cmbCategory.SelectedValue))
+            if (Validate())
             {
-                string name = txtName.Text.Replace("'", "''");
-                string code = txtCode.Text.Replace("'", "''");
-                string supplierPrice = txtSupplierPrice.Text.Replace("'", "''");
-                string salePrice = txtSalePrice.Text.Replace("'", "''");
-                string stock = txtStock.Text.Replace("'", "''");
-                string additionalData = txtInfo.Text.Replace("'", "''");
+                Product newProduct = new()
+                {
+                    Name = txtName.Text.Trim(),
+                    Code = txtCode.Text.Trim(),
+                    SupplierPrice = Convert.ToDecimal(txtSupplierPrice.Text.Replace(",", ".")),
+                    SalePrice = Convert.ToDecimal(txtSalePrice.Text.Replace(",", ".")),
+                    Stock = Convert.ToInt32(txtStock.Text),
+                    CategoryId = Convert.ToInt32(cmbCategory.SelectedValue),
+                    Description = txtInfo.Text.Trim(),
+                    WhoModified = "Ema"
+                };
 
-                string sentencia = $@"INSERT INTO TBLPRODUCTO 
-                        (StrNombre, StrCodigo, NumPrecioCompra, NumPrecioVenta, NumStock, IdCategoria, StrDetalle, [DtmFechaModifica], [StrUsuarioModifica]) 
-                        VALUES 
-                        ('{name}', '{code}', {supplierPrice}, {salePrice}, {stock}, 
-                         {cmbCategory.SelectedValue}, '{additionalData}', GETDATE(), 'Javier')";
+                string message = newProduct.Update();
+                MessageBox.Show(message, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                string resultado = db.RunCommand(sentencia);
-                MessageBox.Show(resultado, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Clear();
+                if (!message.Contains("ERROR"))
+                {
+                    Clear();
+                }
             }
         }
         catch (Exception ex)
@@ -215,30 +204,20 @@ public partial class FrmProducts : Form
                 return;
             }
 
-            if (Validate(txtName.Text, txtCode.Text, txtSupplierPrice.Text, txtSalePrice.Text, txtStock.Text, cmbCategory.SelectedValue))
+            if (Validate())
             {
-                string name = txtName.Text.Replace("'", "''");
-                string code = txtCode.Text.Replace("'", "''");
-                decimal supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
-                decimal salePrice = Convert.ToDecimal(txtSalePrice.Text);
-                int stock = Convert.ToInt32(txtStock.Text);
-                int idCategory = Convert.ToInt32(cmbCategory.SelectedValue);
-                string additionalData = txtInfo.Text.Replace("'", "''");
+                product.Id = Convert.ToInt32(txtId.Text);
+                product.Name = txtName.Text.Trim();
+                product.Code = txtCode.Text.Trim();
+                product.SupplierPrice = Convert.ToDecimal(txtSupplierPrice.Text.Replace(",", "."));
+                product.SalePrice = Convert.ToDecimal(txtSalePrice.Text.Replace(",", "."));
+                product.Stock = Convert.ToInt32(txtStock.Text);
+                product.CategoryId = Convert.ToInt32(cmbCategory.SelectedValue);
+                product.Description = txtInfo.Text.Trim();
+                product.WhoModified = "Ema";
 
-                string sentencia = $@"UPDATE TBLPRODUCTO SET 
-                        StrNombre = '{name}',
-                        StrCodigo = '{code}',
-                        NumPrecioCompra = {supplierPrice},
-                        NumPrecioVenta = {salePrice},
-                        NumStock = {stock},
-                        IdCategoria = {idCategory},
-                        StrDetalle = '{additionalData}',
-                        DtmFechaModifica = GETDATE(),
-                        StrUsuarioModifica = 'Javier'
-                        WHERE IdProducto = {txtId.Text}";
-
-                string resultado = db.RunCommand(sentencia);
-                MessageBox.Show(resultado, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string message = product.Update();
+                MessageBox.Show(message, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Clear();
             }
         }
@@ -272,9 +251,10 @@ public partial class FrmProducts : Form
             var result = MessageBox.Show("¿Está seguro de eliminar este producto?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                string sentencia = $"DELETE FROM TBLPRODUCTO WHERE IdProducto = {txtId.Text}";
-                string resultado = db.RunCommand(sentencia);
-                MessageBox.Show(resultado, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                product.Id = Convert.ToInt32(txtId.Text);
+
+                string message = product.Delete();
+                MessageBox.Show(message, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Clear();
             }
         }

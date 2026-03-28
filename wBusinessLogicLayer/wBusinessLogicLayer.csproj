@@ -169,6 +169,7 @@
   <ItemGroup>
     <Compile Include="Customer.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Rol.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="ValidateUser.cs" />
