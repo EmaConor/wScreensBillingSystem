@@ -98,7 +98,7 @@ public partial class FrmProducts : Form
             {
                 try
                 {
-                    product.Id = Convert.ToInt32(dgvProducts[0, row].Value.ToString());
+                    product.Id = Convert.ToInt32(dgvProducts[0, row].Value);
                     string message = product.Delete();
                     MessageBox.Show(message, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Clear();
@@ -112,10 +112,10 @@ public partial class FrmProducts : Form
         }
         else if (columnName == "edit")
         {
-            int customerId = Convert.ToInt32(dgvProducts[0, row].Value);
+            int productId = Convert.ToInt32(dgvProducts[0, row].Value);
 
             using FrmProductModal frm = new();
-            frm.ProductId = customerId;
+            frm.ProductId = productId;
 
             if (frm.ShowDialog() == DialogResult.OK)
             {

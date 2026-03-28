@@ -67,7 +67,7 @@ namespace wScreensBillingSystem
                 if (dt.Rows.Count > 0)
                 {
                     DataRow row = dt.Rows[0];
-                    lblTitle.Text = $"Modificar cliente {row["StrNombre"].ToString()}";
+                    lblTitle.Text = $"Modificar Cliente {row["StrNombre"].ToString()}";
                     txtId.Text = row["IdCliente"].ToString();
                     txtName.Text = row["StrNombre"].ToString();
                     txtDoc.Text = row["NumDocumento"].ToString();

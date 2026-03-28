@@ -39,6 +39,22 @@ namespace wBusinessLogicLayer
                 return null;
             }
         }
+        public DataTable LoadCategoryById(int id)
+        {
+            try
+            {
+                string sql = $"SELECT [IdCategoria], [StrDescripcion] FROM TBLCATEGORIA_PROD  WHERE [IdCategoria] = '{id}'";
+
+                DataTable dt = new DataTable();
+                dt = Access.RunCommandData(sql);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR EN LA CONSULTA: " + ex.ToString());
+                return null;
+            }
+        }
 
         public string Delete()
         {

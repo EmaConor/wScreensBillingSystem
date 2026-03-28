@@ -31,21 +31,17 @@ namespace wScreensBillingSystem
         private void InitializeComponent()
         {
             lblTitle = new MaterialSkin.Controls.MaterialLabel();
-            pnlCustomer = new Panel();
-            txtDescription = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
-            txtId = new TextBox();
             pnlSearch = new Panel();
             dgvCategories = new DataGridView();
             id = new DataGridViewTextBoxColumn();
             description = new DataGridViewTextBoxColumn();
+            edit = new DataGridViewButtonColumn();
+            delete = new DataGridViewButtonColumn();
             btnSearch = new MaterialSkin.Controls.MaterialButton();
             txtSearch = new MaterialSkin.Controls.MaterialTextBox();
             btnNew = new MaterialSkin.Controls.MaterialButton();
-            btnUpdate = new MaterialSkin.Controls.MaterialButton();
-            btnDelete = new MaterialSkin.Controls.MaterialButton();
             btnOut = new MaterialSkin.Controls.MaterialButton();
             btnClear = new MaterialSkin.Controls.MaterialButton();
-            pnlCustomer.SuspendLayout();
             pnlSearch.SuspendLayout();
             ((ISupportInitialize)dgvCategories).BeginInit();
             SuspendLayout();
@@ -63,57 +59,15 @@ namespace wScreensBillingSystem
             lblTitle.Text = "Admintración de Categorias";
             lblTitle.TextAlign = ContentAlignment.TopCenter;
             // 
-            // pnlCustomer
-            // 
-            pnlCustomer.Controls.Add(txtDescription);
-            pnlCustomer.Controls.Add(txtId);
-            pnlCustomer.Location = new Point(129, 35);
-            pnlCustomer.Name = "pnlCustomer";
-            pnlCustomer.Size = new Size(425, 183);
-            pnlCustomer.TabIndex = 1;
-            // 
-            // txtDescription
-            // 
-            txtDescription.AnimateReadOnly = false;
-            txtDescription.BackgroundImageLayout = ImageLayout.None;
-            txtDescription.CharacterCasing = CharacterCasing.Normal;
-            txtDescription.Depth = 0;
-            txtDescription.HideSelection = true;
-            txtDescription.Hint = "Descripción";
-            txtDescription.Location = new Point(37, 22);
-            txtDescription.MaxLength = 32767;
-            txtDescription.MouseState = MaterialSkin.MouseState.OUT;
-            txtDescription.Name = "txtDescription";
-            txtDescription.PasswordChar = '\0';
-            txtDescription.ReadOnly = false;
-            txtDescription.ScrollBars = ScrollBars.None;
-            txtDescription.SelectedText = "";
-            txtDescription.SelectionLength = 0;
-            txtDescription.SelectionStart = 0;
-            txtDescription.ShortcutsEnabled = true;
-            txtDescription.Size = new Size(355, 148);
-            txtDescription.TabIndex = 6;
-            txtDescription.TabStop = false;
-            txtDescription.TextAlign = HorizontalAlignment.Left;
-            txtDescription.UseSystemPasswordChar = false;
-            // 
-            // txtId
-            // 
-            txtId.Enabled = false;
-            txtId.Location = new Point(7, 22);
-            txtId.Name = "txtId";
-            txtId.Size = new Size(22, 23);
-            txtId.TabIndex = 5;
-            txtId.Visible = false;
-            // 
             // pnlSearch
             // 
             pnlSearch.Controls.Add(dgvCategories);
             pnlSearch.Controls.Add(btnSearch);
             pnlSearch.Controls.Add(txtSearch);
-            pnlSearch.Location = new Point(-8, 224);
+            pnlSearch.Controls.Add(btnNew);
+            pnlSearch.Location = new Point(-8, 49);
             pnlSearch.Name = "pnlSearch";
-            pnlSearch.Size = new Size(735, 293);
+            pnlSearch.Size = new Size(735, 468);
             pnlSearch.TabIndex = 2;
             // 
             // dgvCategories
@@ -121,15 +75,14 @@ namespace wScreensBillingSystem
             dgvCategories.AllowUserToAddRows = false;
             dgvCategories.AllowUserToDeleteRows = false;
             dgvCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCategories.Columns.AddRange(new DataGridViewColumn[] { id, description });
+            dgvCategories.Columns.AddRange(new DataGridViewColumn[] { id, description, edit, delete });
             dgvCategories.Location = new Point(13, 67);
             dgvCategories.Name = "dgvCategories";
             dgvCategories.ReadOnly = true;
-            dgvCategories.Size = new Size(706, 214);
+            dgvCategories.Size = new Size(706, 386);
             dgvCategories.TabIndex = 5;
             dgvCategories.Text = "dataGridView1";
-            dgvCategories.CellClick += dgvCategories_CellClick;
-            dgvCategories.MouseDown += dgvCategories_MouseDown;
+            dgvCategories.CellContentClick += dgvCategories_CellContentClick;
             // 
             // id
             // 
@@ -143,6 +96,22 @@ namespace wScreensBillingSystem
             description.Name = "description";
             description.ReadOnly = true;
             // 
+            // edit
+            // 
+            edit.HeaderText = "Editar";
+            edit.Name = "edit";
+            edit.ReadOnly = true;
+            edit.Text = "Editar";
+            edit.UseColumnTextForButtonValue = true;
+            // 
+            // delete
+            // 
+            delete.HeaderText = "Eliminar";
+            delete.Name = "delete";
+            delete.ReadOnly = true;
+            delete.Text = "Eliminar";
+            delete.UseColumnTextForButtonValue = true;
+            // 
             // btnSearch
             // 
             btnSearch.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -150,7 +119,7 @@ namespace wScreensBillingSystem
             btnSearch.Depth = 0;
             btnSearch.HighEmphasis = true;
             btnSearch.Icon = null;
-            btnSearch.Location = new Point(635, 22);
+            btnSearch.Location = new Point(452, 22);
             btnSearch.Margin = new Padding(4, 6, 4, 6);
             btnSearch.MouseState = MaterialSkin.MouseState.HOVER;
             btnSearch.Name = "btnSearch";
@@ -176,7 +145,7 @@ namespace wScreensBillingSystem
             txtSearch.MouseState = MaterialSkin.MouseState.OUT;
             txtSearch.Multiline = false;
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(604, 50);
+            txtSearch.Size = new Size(419, 50);
             txtSearch.TabIndex = 8;
             txtSearch.Text = "";
             txtSearch.TrailingIcon = null;
@@ -188,7 +157,7 @@ namespace wScreensBillingSystem
             btnNew.Depth = 0;
             btnNew.HighEmphasis = true;
             btnNew.Icon = null;
-            btnNew.Location = new Point(573, 116);
+            btnNew.Location = new Point(649, 22);
             btnNew.Margin = new Padding(4, 6, 4, 6);
             btnNew.MouseState = MaterialSkin.MouseState.HOVER;
             btnNew.Name = "btnNew";
@@ -200,50 +169,6 @@ namespace wScreensBillingSystem
             btnNew.UseAccentColor = false;
             btnNew.UseVisualStyleBackColor = true;
             btnNew.Click += btnNew_Click;
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnUpdate.Depth = 0;
-            btnUpdate.DrawShadows = false;
-            btnUpdate.HighEmphasis = true;
-            btnUpdate.Icon = null;
-            btnUpdate.Location = new Point(573, 97);
-            btnUpdate.Margin = new Padding(4, 6, 4, 6);
-            btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.NoAccentTextColor = Color.Empty;
-            btnUpdate.Size = new Size(109, 36);
-            btnUpdate.TabIndex = 6;
-            btnUpdate.Text = "Actualizar";
-            btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnUpdate.UseAccentColor = false;
-            btnUpdate.UseVisualStyleBackColor = true;
-            btnUpdate.Visible = false;
-            btnUpdate.Click += btnUpdate_Click;
-            // 
-            // btnDelete
-            // 
-            btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnDelete.Depth = 0;
-            btnDelete.DrawShadows = false;
-            btnDelete.HighEmphasis = true;
-            btnDelete.Icon = null;
-            btnDelete.Location = new Point(573, 136);
-            btnDelete.Margin = new Padding(4, 6, 4, 6);
-            btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
-            btnDelete.Name = "btnDelete";
-            btnDelete.NoAccentTextColor = Color.Empty;
-            btnDelete.Size = new Size(88, 36);
-            btnDelete.TabIndex = 7;
-            btnDelete.Text = "Eliminar";
-            btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnDelete.UseAccentColor = false;
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Visible = false;
-            btnDelete.Click += btnDelete_Click;
             // 
             // btnOut
             // 
@@ -293,16 +218,10 @@ namespace wScreensBillingSystem
             ControlBox = false;
             Controls.Add(btnClear);
             Controls.Add(btnOut);
-            Controls.Add(btnDelete);
-            Controls.Add(btnUpdate);
-            Controls.Add(btnNew);
             Controls.Add(pnlSearch);
             Controls.Add(lblTitle);
-            Controls.Add(pnlCustomer);
             Name = "FrmCategories";
             ShowInTaskbar = false;
-            pnlCustomer.ResumeLayout(false);
-            pnlCustomer.PerformLayout();
             pnlSearch.ResumeLayout(false);
             pnlSearch.PerformLayout();
             ((ISupportInitialize)dgvCategories).EndInit();
@@ -316,24 +235,18 @@ namespace wScreensBillingSystem
 
         private MaterialSkin.Controls.MaterialButton btnSearch;
 
-        private MaterialSkin.Controls.MaterialButton btnDelete;
-
         private MaterialSkin.Controls.MaterialButton btnNew;
-        private MaterialSkin.Controls.MaterialButton btnUpdate;
 
         private System.Windows.Forms.Panel pnlSearch;
         private MaterialSkin.Controls.MaterialTextBox txtSearch;
 
-        private System.Windows.Forms.Panel pnlCustomer;
-
         private MaterialSkin.Controls.MaterialLabel lblTitle;
 
         #endregion
-
-        private TextBox txtId;
-        private MaterialSkin.Controls.MaterialMultiLineTextBox2 txtDescription;
+        private MaterialSkin.Controls.MaterialButton btnClear;
         private DataGridViewTextBoxColumn id;
         private DataGridViewTextBoxColumn description;
-        private MaterialSkin.Controls.MaterialButton btnClear;
+        private DataGridViewButtonColumn edit;
+        private DataGridViewButtonColumn delete;
     }
 }
