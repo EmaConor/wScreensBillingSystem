@@ -42,6 +42,22 @@ namespace wBusinessLogicLayer
                 return null;
             }
         }
+        public DataTable LoadCustomerById(int id)
+        {
+            try
+            {
+                string sql = $"SELECT IdCliente, StrNombre, NumDocumento, StrDireccion, StrTelefono, StrEmail FROM TBLCLIENTES WHERE IdCliente = '{id}'";
+
+                DataTable dt = new DataTable();
+                dt = Access.RunCommandData(sql);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR EN LA CONSULTA: " + ex.ToString());
+                return null;
+            }
+        }
 
         public string Delete()
         {
