@@ -5,7 +5,7 @@ using System.Collections;
 using System.Data;
 using System.Globalization;
 using wBusinessLogicLayer;
-using wScreensBillingSystem.Data;
+using wScreensBillingSystem;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace wScreensBillingSystem;

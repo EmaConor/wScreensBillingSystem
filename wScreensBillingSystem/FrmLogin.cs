@@ -1,5 +1,5 @@
 using wBusinessLogicLayer;
-using wScreensBillingSystem.Data;
+using wScreensBillingSystem;
 
 namespace wScreensBillingSystem;
 

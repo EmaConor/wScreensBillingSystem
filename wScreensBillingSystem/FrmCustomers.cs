@@ -2,7 +2,7 @@
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Collections;
 using System.Data;
-using wScreensBillingSystem.Data;
+using wScreensBillingSystem;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using wBusinessLogicLayer;
 

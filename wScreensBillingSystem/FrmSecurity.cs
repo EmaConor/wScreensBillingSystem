@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using wBusinessLogicLayer;
-using wScreensBillingSystem.Data;
+using wScreensBillingSystem;
 
 namespace wScreensBillingSystem
 {
