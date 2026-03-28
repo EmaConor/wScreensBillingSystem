@@ -156,11 +156,6 @@ public partial class FrmProducts : Form
         return true;
     }
 
-    private bool isNumeric(string num)
-    {
-        return double.TryParse(num, out _);
-    }
-
     private void btnNew_Click(object sender, EventArgs e)
     {
         try
