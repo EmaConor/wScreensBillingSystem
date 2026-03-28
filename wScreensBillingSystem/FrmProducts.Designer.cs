@@ -32,16 +32,8 @@ partial class FrmProducts
     private void InitializeComponent()
     {
         lblTitle = new MaterialSkin.Controls.MaterialLabel();
-        pnlProduct = new Panel();
-        txtInfo = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
-        cmbCategory = new MaterialSkin.Controls.MaterialComboBox();
-        txtId = new TextBox();
-        txtStock = new MaterialSkin.Controls.MaterialTextBox();
-        txtSalePrice = new MaterialSkin.Controls.MaterialTextBox();
-        txtSupplierPrice = new MaterialSkin.Controls.MaterialTextBox();
-        txtCode = new MaterialSkin.Controls.MaterialTextBox();
-        txtName = new MaterialSkin.Controls.MaterialTextBox();
         pnlSearch = new Panel();
+        btnNew = new MaterialSkin.Controls.MaterialButton();
         dgvProducts = new DataGridView();
         id = new DataGridViewTextBoxColumn();
         nameProduct = new DataGridViewTextBoxColumn();
@@ -52,14 +44,12 @@ partial class FrmProducts
         idCategory = new DataGridViewTextBoxColumn();
         category = new DataGridViewTextBoxColumn();
         info = new DataGridViewTextBoxColumn();
+        edit = new DataGridViewButtonColumn();
+        delete = new DataGridViewButtonColumn();
         btnSearch = new MaterialSkin.Controls.MaterialButton();
         txtSearch = new MaterialSkin.Controls.MaterialTextBox();
-        btnNew = new MaterialSkin.Controls.MaterialButton();
-        btnUpdate = new MaterialSkin.Controls.MaterialButton();
-        btnDelete = new MaterialSkin.Controls.MaterialButton();
         btnOut = new MaterialSkin.Controls.MaterialButton();
         btnClear = new MaterialSkin.Controls.MaterialButton();
-        pnlProduct.SuspendLayout();
         pnlSearch.SuspendLayout();
         ((ISupportInitialize)dgvProducts).BeginInit();
         SuspendLayout();
@@ -77,198 +67,50 @@ partial class FrmProducts
         lblTitle.Text = "Admintración de Productos";
         lblTitle.TextAlign = ContentAlignment.TopCenter;
         // 
-        // pnlProduct
-        // 
-        pnlProduct.Controls.Add(txtInfo);
-        pnlProduct.Controls.Add(cmbCategory);
-        pnlProduct.Controls.Add(txtId);
-        pnlProduct.Controls.Add(txtStock);
-        pnlProduct.Controls.Add(txtSalePrice);
-        pnlProduct.Controls.Add(txtSupplierPrice);
-        pnlProduct.Controls.Add(txtCode);
-        pnlProduct.Controls.Add(txtName);
-        pnlProduct.Location = new Point(16, 35);
-        pnlProduct.Name = "pnlProduct";
-        pnlProduct.Size = new Size(656, 213);
-        pnlProduct.TabIndex = 1;
-        // 
-        // txtInfo
-        // 
-        txtInfo.AnimateReadOnly = false;
-        txtInfo.BackgroundImageLayout = ImageLayout.None;
-        txtInfo.CharacterCasing = CharacterCasing.Normal;
-        txtInfo.Depth = 0;
-        txtInfo.HideSelection = true;
-        txtInfo.Hint = "Detalles del Producto";
-        txtInfo.Location = new Point(382, 50);
-        txtInfo.MaxLength = 32767;
-        txtInfo.MouseState = MaterialSkin.MouseState.OUT;
-        txtInfo.Name = "txtInfo";
-        txtInfo.PasswordChar = '\0';
-        txtInfo.ReadOnly = false;
-        txtInfo.ScrollBars = ScrollBars.None;
-        txtInfo.SelectedText = "";
-        txtInfo.SelectionLength = 0;
-        txtInfo.SelectionStart = 0;
-        txtInfo.ShortcutsEnabled = true;
-        txtInfo.Size = new Size(256, 159);
-        txtInfo.TabIndex = 11;
-        txtInfo.TabStop = false;
-        txtInfo.TextAlign = HorizontalAlignment.Left;
-        txtInfo.UseSystemPasswordChar = false;
-        // 
-        // cmbCategory
-        // 
-        cmbCategory.AutoResize = false;
-        cmbCategory.BackColor = Color.FromArgb(255, 255, 255);
-        cmbCategory.Depth = 0;
-        cmbCategory.DrawMode = DrawMode.OwnerDrawVariable;
-        cmbCategory.DropDownHeight = 118;
-        cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
-        cmbCategory.DropDownWidth = 121;
-        cmbCategory.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-        cmbCategory.ForeColor = Color.FromArgb(222, 0, 0, 0);
-        cmbCategory.FormattingEnabled = true;
-        cmbCategory.Hint = "Categoria";
-        cmbCategory.IntegralHeight = false;
-        cmbCategory.ItemHeight = 29;
-        cmbCategory.Location = new Point(381, 9);
-        cmbCategory.MaxDropDownItems = 4;
-        cmbCategory.MouseState = MaterialSkin.MouseState.OUT;
-        cmbCategory.Name = "cmbCategory";
-        cmbCategory.Size = new Size(256, 35);
-        cmbCategory.StartIndex = 0;
-        cmbCategory.TabIndex = 6;
-        cmbCategory.UseTallSize = false;
-        // 
-        // txtId
-        // 
-        txtId.Enabled = false;
-        txtId.Location = new Point(7, 22);
-        txtId.Name = "txtId";
-        txtId.Size = new Size(22, 23);
-        txtId.TabIndex = 5;
-        txtId.Visible = false;
-        // 
-        // txtStock
-        // 
-        txtStock.AnimateReadOnly = false;
-        txtStock.BorderStyle = BorderStyle.None;
-        txtStock.Depth = 0;
-        txtStock.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-        txtStock.Hint = "Cantidad";
-        txtStock.LeadingIcon = null;
-        txtStock.Location = new Point(35, 173);
-        txtStock.MaxLength = 32767;
-        txtStock.MouseState = MaterialSkin.MouseState.OUT;
-        txtStock.Multiline = false;
-        txtStock.Name = "txtStock";
-        txtStock.Size = new Size(329, 36);
-        txtStock.TabIndex = 4;
-        txtStock.Text = "";
-        txtStock.TrailingIcon = null;
-        txtStock.UseTallSize = false;
-        // 
-        // txtSalePrice
-        // 
-        txtSalePrice.AnimateReadOnly = false;
-        txtSalePrice.BorderStyle = BorderStyle.None;
-        txtSalePrice.Depth = 0;
-        txtSalePrice.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-        txtSalePrice.Hint = "Precio Venta";
-        txtSalePrice.LeadingIcon = null;
-        txtSalePrice.Location = new Point(35, 131);
-        txtSalePrice.MaxLength = 32767;
-        txtSalePrice.MouseState = MaterialSkin.MouseState.OUT;
-        txtSalePrice.Multiline = false;
-        txtSalePrice.Name = "txtSalePrice";
-        txtSalePrice.Size = new Size(329, 36);
-        txtSalePrice.TabIndex = 3;
-        txtSalePrice.Text = "";
-        txtSalePrice.TrailingIcon = null;
-        txtSalePrice.UseTallSize = false;
-        // 
-        // txtSupplierPrice
-        // 
-        txtSupplierPrice.AnimateReadOnly = false;
-        txtSupplierPrice.BorderStyle = BorderStyle.None;
-        txtSupplierPrice.Depth = 0;
-        txtSupplierPrice.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-        txtSupplierPrice.Hint = "Precio Compra";
-        txtSupplierPrice.LeadingIcon = null;
-        txtSupplierPrice.Location = new Point(35, 89);
-        txtSupplierPrice.MaxLength = 32767;
-        txtSupplierPrice.MouseState = MaterialSkin.MouseState.OUT;
-        txtSupplierPrice.Multiline = false;
-        txtSupplierPrice.Name = "txtSupplierPrice";
-        txtSupplierPrice.Size = new Size(329, 36);
-        txtSupplierPrice.TabIndex = 2;
-        txtSupplierPrice.Text = "";
-        txtSupplierPrice.TrailingIcon = null;
-        txtSupplierPrice.UseTallSize = false;
-        // 
-        // txtCode
-        // 
-        txtCode.AnimateReadOnly = false;
-        txtCode.BorderStyle = BorderStyle.None;
-        txtCode.Depth = 0;
-        txtCode.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-        txtCode.Hint = "Codigo";
-        txtCode.LeadingIcon = null;
-        txtCode.Location = new Point(35, 47);
-        txtCode.MaxLength = 32767;
-        txtCode.MouseState = MaterialSkin.MouseState.OUT;
-        txtCode.Multiline = false;
-        txtCode.Name = "txtCode";
-        txtCode.Size = new Size(329, 36);
-        txtCode.TabIndex = 1;
-        txtCode.Text = "";
-        txtCode.TrailingIcon = null;
-        txtCode.UseTallSize = false;
-        // 
-        // txtName
-        // 
-        txtName.AnimateReadOnly = false;
-        txtName.BorderStyle = BorderStyle.None;
-        txtName.Depth = 0;
-        txtName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-        txtName.Hint = "Nombre Producto";
-        txtName.LeadingIcon = null;
-        txtName.Location = new Point(35, 9);
-        txtName.MaxLength = 32767;
-        txtName.MouseState = MaterialSkin.MouseState.OUT;
-        txtName.Multiline = false;
-        txtName.Name = "txtName";
-        txtName.Size = new Size(329, 36);
-        txtName.TabIndex = 0;
-        txtName.Text = "";
-        txtName.TrailingIcon = null;
-        txtName.UseTallSize = false;
-        // 
         // pnlSearch
         // 
+        pnlSearch.Controls.Add(btnNew);
         pnlSearch.Controls.Add(dgvProducts);
         pnlSearch.Controls.Add(btnSearch);
         pnlSearch.Controls.Add(txtSearch);
-        pnlSearch.Location = new Point(-8, 254);
+        pnlSearch.Location = new Point(-8, 54);
         pnlSearch.Name = "pnlSearch";
-        pnlSearch.Size = new Size(735, 263);
+        pnlSearch.Size = new Size(735, 463);
         pnlSearch.TabIndex = 2;
+        // 
+        // btnNew
+        // 
+        btnNew.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        btnNew.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+        btnNew.Depth = 0;
+        btnNew.HighEmphasis = true;
+        btnNew.Icon = null;
+        btnNew.Location = new Point(649, 22);
+        btnNew.Margin = new Padding(4, 6, 4, 6);
+        btnNew.MouseState = MaterialSkin.MouseState.HOVER;
+        btnNew.Name = "btnNew";
+        btnNew.NoAccentTextColor = Color.Empty;
+        btnNew.Size = new Size(70, 36);
+        btnNew.TabIndex = 10;
+        btnNew.Text = "Nuevo";
+        btnNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+        btnNew.UseAccentColor = false;
+        btnNew.UseVisualStyleBackColor = true;
+        btnNew.Click += btnNew_Click;
         // 
         // dgvProducts
         // 
         dgvProducts.AllowUserToAddRows = false;
         dgvProducts.AllowUserToDeleteRows = false;
         dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        dgvProducts.Columns.AddRange(new DataGridViewColumn[] { id, nameProduct, code, supplierPrice, salePrice, stock, idCategory, category, info });
+        dgvProducts.Columns.AddRange(new DataGridViewColumn[] { id, nameProduct, code, supplierPrice, salePrice, stock, idCategory, category, info, edit, delete });
         dgvProducts.Location = new Point(13, 67);
         dgvProducts.Name = "dgvProducts";
         dgvProducts.ReadOnly = true;
-        dgvProducts.Size = new Size(706, 184);
+        dgvProducts.Size = new Size(706, 381);
         dgvProducts.TabIndex = 5;
         dgvProducts.Text = "dataGridView1";
-        dgvProducts.CellClick += dgvProducts_CellClick;
-        dgvProducts.MouseDown += dgvProducts_MouseDown;
+        dgvProducts.CellContentClick += dgvProducts_CellContentClick;
         // 
         // id
         // 
@@ -325,6 +167,26 @@ partial class FrmProducts
         info.Name = "info";
         info.ReadOnly = true;
         // 
+        // edit
+        // 
+        edit.HeaderText = "Editar";
+        edit.Name = "edit";
+        edit.ReadOnly = true;
+        edit.Resizable = DataGridViewTriState.True;
+        edit.SortMode = DataGridViewColumnSortMode.Automatic;
+        edit.Text = "Editar";
+        edit.UseColumnTextForButtonValue = true;
+        // 
+        // delete
+        // 
+        delete.HeaderText = "Eliminar";
+        delete.Name = "delete";
+        delete.ReadOnly = true;
+        delete.Resizable = DataGridViewTriState.True;
+        delete.SortMode = DataGridViewColumnSortMode.Automatic;
+        delete.Text = "Eliminar";
+        delete.UseColumnTextForButtonValue = true;
+        // 
         // btnSearch
         // 
         btnSearch.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -332,7 +194,7 @@ partial class FrmProducts
         btnSearch.Depth = 0;
         btnSearch.HighEmphasis = true;
         btnSearch.Icon = null;
-        btnSearch.Location = new Point(635, 22);
+        btnSearch.Location = new Point(490, 22);
         btnSearch.Margin = new Padding(4, 6, 4, 6);
         btnSearch.MouseState = MaterialSkin.MouseState.HOVER;
         btnSearch.Name = "btnSearch";
@@ -358,74 +220,10 @@ partial class FrmProducts
         txtSearch.MouseState = MaterialSkin.MouseState.OUT;
         txtSearch.Multiline = false;
         txtSearch.Name = "txtSearch";
-        txtSearch.Size = new Size(604, 50);
+        txtSearch.Size = new Size(459, 50);
         txtSearch.TabIndex = 8;
         txtSearch.Text = "";
         txtSearch.TrailingIcon = null;
-        // 
-        // btnNew
-        // 
-        btnNew.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        btnNew.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-        btnNew.Depth = 0;
-        btnNew.HighEmphasis = true;
-        btnNew.Icon = null;
-        btnNew.Location = new Point(679, 116);
-        btnNew.Margin = new Padding(4, 6, 4, 6);
-        btnNew.MouseState = MaterialSkin.MouseState.HOVER;
-        btnNew.Name = "btnNew";
-        btnNew.NoAccentTextColor = Color.Empty;
-        btnNew.Size = new Size(70, 36);
-        btnNew.TabIndex = 5;
-        btnNew.Text = "Nuevo";
-        btnNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-        btnNew.UseAccentColor = false;
-        btnNew.UseVisualStyleBackColor = true;
-        btnNew.Click += btnNew_Click;
-        // 
-        // btnUpdate
-        // 
-        btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-        btnUpdate.Depth = 0;
-        btnUpdate.DrawShadows = false;
-        btnUpdate.HighEmphasis = true;
-        btnUpdate.Icon = null;
-        btnUpdate.Location = new Point(679, 98);
-        btnUpdate.Margin = new Padding(4, 6, 4, 6);
-        btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
-        btnUpdate.Name = "btnUpdate";
-        btnUpdate.NoAccentTextColor = Color.Empty;
-        btnUpdate.Size = new Size(109, 36);
-        btnUpdate.TabIndex = 6;
-        btnUpdate.Text = "Actualizar";
-        btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-        btnUpdate.UseAccentColor = false;
-        btnUpdate.UseVisualStyleBackColor = true;
-        btnUpdate.Visible = false;
-        btnUpdate.Click += btnUpdate_Click;
-        // 
-        // btnDelete
-        // 
-        btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-        btnDelete.Depth = 0;
-        btnDelete.DrawShadows = false;
-        btnDelete.HighEmphasis = true;
-        btnDelete.Icon = null;
-        btnDelete.Location = new Point(679, 140);
-        btnDelete.Margin = new Padding(4, 6, 4, 6);
-        btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
-        btnDelete.Name = "btnDelete";
-        btnDelete.NoAccentTextColor = Color.Empty;
-        btnDelete.Size = new Size(88, 36);
-        btnDelete.TabIndex = 7;
-        btnDelete.Text = "Eliminar";
-        btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-        btnDelete.UseAccentColor = false;
-        btnDelete.UseVisualStyleBackColor = true;
-        btnDelete.Visible = false;
-        btnDelete.Click += btnDelete_Click;
         // 
         // btnOut
         // 
@@ -475,16 +273,10 @@ partial class FrmProducts
         ControlBox = false;
         Controls.Add(btnClear);
         Controls.Add(btnOut);
-        Controls.Add(btnDelete);
-        Controls.Add(btnUpdate);
-        Controls.Add(btnNew);
         Controls.Add(pnlSearch);
         Controls.Add(lblTitle);
-        Controls.Add(pnlProduct);
         Name = "FrmProducts";
         ShowInTaskbar = false;
-        pnlProduct.ResumeLayout(false);
-        pnlProduct.PerformLayout();
         pnlSearch.ResumeLayout(false);
         pnlSearch.PerformLayout();
         ((ISupportInitialize)dgvProducts).EndInit();
@@ -498,29 +290,14 @@ partial class FrmProducts
 
     private MaterialSkin.Controls.MaterialButton btnSearch;
 
-    private MaterialSkin.Controls.MaterialButton btnDelete;
-
-    private MaterialSkin.Controls.MaterialButton btnNew;
-    private MaterialSkin.Controls.MaterialButton btnUpdate;
-
     private System.Windows.Forms.Panel pnlSearch;
     private MaterialSkin.Controls.MaterialTextBox txtSearch;
-
-    private MaterialSkin.Controls.MaterialTextBox txtName;
-    private MaterialSkin.Controls.MaterialTextBox txtCode;
-    private MaterialSkin.Controls.MaterialTextBox txtSupplierPrice;
-    private MaterialSkin.Controls.MaterialTextBox txtSalePrice;
-    private MaterialSkin.Controls.MaterialTextBox txtStock;
-
-    private System.Windows.Forms.Panel pnlProduct;
 
     private MaterialSkin.Controls.MaterialLabel lblTitle;
 
     #endregion
-
-    private TextBox txtId;
-    private MaterialSkin.Controls.MaterialComboBox cmbCategory;
-    private MaterialSkin.Controls.MaterialMultiLineTextBox2 txtInfo;
+    private MaterialSkin.Controls.MaterialButton btnClear;
+    private MaterialSkin.Controls.MaterialButton btnNew;
     private DataGridViewTextBoxColumn id;
     private DataGridViewTextBoxColumn nameProduct;
     private DataGridViewTextBoxColumn code;
@@ -530,5 +307,6 @@ partial class FrmProducts
     private DataGridViewTextBoxColumn idCategory;
     private DataGridViewTextBoxColumn category;
     private DataGridViewTextBoxColumn info;
-    private MaterialSkin.Controls.MaterialButton btnClear;
+    private DataGridViewButtonColumn edit;
+    private DataGridViewButtonColumn delete;
 }

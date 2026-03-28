@@ -48,6 +48,22 @@ namespace wBusinessLogicLayer
                 return null;
             }
         }
+        public DataTable LoadProductById(int id)
+        {
+            try
+            {
+                string sql = $"SELECT p.[IdProducto], p.[StrNombre], p.[StrCodigo], p.[NumPrecioCompra], p.[NumPrecioVenta],  p.[NumStock], p.[IdCategoria], c.StrDescripcion, p.[StrDetalle] FROM [TBLPRODUCTO] p INNER JOIN TBLCATEGORIA_PROD c ON p.[IdCategoria] = c.IdCategoria WHERE p.[IdProducto] = '{id}'";
+                
+                DataTable dt = new DataTable();
+                dt = Access.RunCommandData(sql);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR EN LA CONSULTA: " + ex.ToString());
+                return null;
+            }
+        }
 
         public DataTable LoadCategory()
         {
