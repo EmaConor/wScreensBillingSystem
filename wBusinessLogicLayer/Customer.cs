@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace wBusinessLogicLayer
 {
-    public class Customers
+    public class Customer
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -86,29 +86,29 @@ namespace wBusinessLogicLayer
             return output;
         }
 
-        public string Insert()
-        {
-            string output;
-            try
-            {
-                string name = Name.Replace("'", "''");
-                string address = Address.Replace("'", "''");
-                string email = Email.Replace("'", "''");
-                string phone = Phone.Replace("'", "''");
-                string whoModified = WhoModified.Replace("'", "''");
+        //public string Insert()
+        //{
+        //    string output;
+        //    try
+        //    {
+        //        string name = Name.Replace("'", "''");
+        //        string address = Address.Replace("'", "''");
+        //        string email = Email.Replace("'", "''");
+        //        string phone = Phone.Replace("'", "''");
+        //        string whoModified = WhoModified.Replace("'", "''");
 
-                string sql = $@"INSERT INTO TBLCLIENTES 
-                        (StrNombre, NumDocumento, StrDireccion, StrTelefono, StrEmail, DtmFechaModifica, StrUsuarioModifica) 
-                        VALUES 
-                        ('{name}', {Document}, '{address}', '{phone}', '{email}', GETDATE(), '{whoModified}')";
+        //        string sql = $@"INSERT INTO TBLCLIENTES 
+        //                (StrNombre, NumDocumento, StrDireccion, StrTelefono, StrEmail, DtmFechaModifica, StrUsuarioModifica) 
+        //                VALUES 
+        //                ('{name}', {Document}, '{address}', '{phone}', '{email}', GETDATE(), '{whoModified}')";
 
-                output = Access.RunCommand(sql);
-            }
-            catch (Exception ex)
-            {
-                output = "ERROR: falló la creacion del cliente: " + ex.Message;
-            }
-            return output;
-        }
+        //        output = Access.RunCommand(sql);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        output = "ERROR: falló la creacion del cliente: " + ex.Message;
+        //    }
+        //    return output;
+        //}
     }
 }

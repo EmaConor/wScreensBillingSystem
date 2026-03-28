@@ -18,7 +18,7 @@ public partial class FrmCustomers : Form
     }
 
     DataTable dt = new();
-    private readonly Customers customer = new();
+    private readonly Customer customer = new();
 
     private void LoadData(string filter = "")
     {
@@ -125,7 +125,7 @@ public partial class FrmCustomers : Form
 
             if (Validate(name, document, address, phone, email))
             {
-                Customers newCustomer = new()
+                Customer newCustomer = new()
                 {
                     Name = name,
                     Document = double.Parse(document),
