@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.4.11605.240 stable
+VisualStudioVersion = 18.4.11605.240
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wScreensBillingSystem", "wScreensBillingSystem\wScreensBillingSystem.csproj", "{6764D803-6F8D-43FB-83E4-3F9C25C10A35}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wDataAccessLayer", "Data_Access_Layer\wDataAccessLayer.csproj", "{9C9F8A1C-1254-4C9D-BD5D-3BF3BCDB3341}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wBusinessLogicLayer", "wBusinessLogicLayer\wBusinessLogicLayer.csproj", "{B11A7DC4-B207-42DC-9E1F-BC83A8B8F727}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "wScreensBillingSystem_Installer", "wScreensBillingSystem_Installer\wScreensBillingSystem_Installer.vdproj", "{91ADD23D-A577-B160-5080-1FF2CA2DC008}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,8 @@ Global
 		{B11A7DC4-B207-42DC-9E1F-BC83A8B8F727}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B11A7DC4-B207-42DC-9E1F-BC83A8B8F727}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B11A7DC4-B207-42DC-9E1F-BC83A8B8F727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91ADD23D-A577-B160-5080-1FF2CA2DC008}.Debug|Any CPU.ActiveCfg = Debug
+		{91ADD23D-A577-B160-5080-1FF2CA2DC008}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
